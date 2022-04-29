@@ -6,8 +6,6 @@ import { terser } from "rollup-plugin-terser";
 import css from "rollup-plugin-css-only";
 import replace from "@rollup/plugin-replace";
 import dotenv from "dotenv";
-import json from "@rollup/plugin-json";
-import { string } from "rollup-plugin-string";
 
 dotenv.config();
 const production = !process.env.ROLLUP_WATCH;
@@ -66,11 +64,7 @@ export default {
       dedupe: ["svelte"],
       preferBuiltins: false,
     }),
-    string({
-      include: ["**/*.md"],
-    }),
     commonjs(),
-    json(),
     replace({
       CUSDIS_KEY: JSON.stringify(process.env.CUSDIS_KEY),
     }),
