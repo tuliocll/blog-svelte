@@ -6,7 +6,6 @@
   export let slug;
   export let date;
   export let readTime;
-  export let comments;
   export let preview;
   export let thumb;
 
@@ -31,7 +30,7 @@
         <span class="date">Publicado {formatedDate}</span><span class="time"
           >{readTime} min de leitura</span
         ><span class="comment"
-          ><a href="/post/{slug}#comments">{comments} comentarios</a></span
+          ><a href="/post/{slug}#comments"> <span data-cusdis-count-page-id="PAGINAa">0</span> comentarios</a></span
         >
       </div>
       <div class="intro">
@@ -40,4 +39,5 @@
       <a class="more-link" href="/post/{slug}">Continue lendo &rarr;</a>
     </div>
   </div>
+  <script defer data-host="https://cusdis.com" data-app-id={CUSDIS_KEY} src="https://cusdis.com/js/cusdis-count.umd.js"></script>
 </div>

@@ -3,10 +3,8 @@ import { Router, Route} from "svelte-navigator";
 
 import Sidebar from "./components/sidebar/Sidebar.svelte";
 import Footer from "./components/footer/Footer.svelte";
-
 import Home from "./routes/Home.svelte"
 import Post from "./routes/Post.svelte"
-
 
 export let blogName;
 export let bio;
@@ -17,12 +15,7 @@ export let aboutMeText;
 export let blogSubtitle;
 export let newsletterText;
 export let posts = [];
-
-
 </script>
-
-
-
 
 <Router>
 	<nav>
@@ -34,8 +27,6 @@ export let posts = [];
 			<Route path="about" component="{Post}" />
 			<Route path="/" {blogName} {blogSubtitle} {newsletterText} {posts} component="{Home}" />
 		</div>
-	  
-	
   </Router>
 
 

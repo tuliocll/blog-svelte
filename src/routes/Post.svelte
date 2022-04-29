@@ -1,4 +1,8 @@
 <script>
+
+import CommentBox from "../components/comment-box/CommentBox.svelte"
+
+
   let code = `
 function $initHighlight(block, cls) {
     try {
@@ -22,7 +26,8 @@ export  $initHighlight;
   export let thumb;
   export let content;
   export let blogTitle;
-
+  export let slug;
+  
 
 </script>
 
@@ -186,6 +191,14 @@ export  $initHighlight;
         </div>
       </div>
 
+      <div class="mt-5">
+        <div
+        data-lyket-type="clap"
+        data-lyket-namespace="posta-devs"
+        data-lyket-id="post-devs-need"
+    />
+      </div>
+
       <nav class="blog-nav nav nav-justified my-5">
         <a
           class="nav-link-prev nav-item nav-link rounded-left"
@@ -199,49 +212,9 @@ export  $initHighlight;
         >
       </nav>
 
-      <div class="blog-comments-section">
-        <div id="disqus_thread" />
-        <script>
-          /**
-           *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT
-           *  THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR
-           *  PLATFORM OR CMS.
-           *
-           *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:
-           *  https://disqus.com/admin/universalcode/#configuration-variables
-           */
-          /*
-                    var disqus_config = function () {
-                        // Replace PAGE_URL with your page's canonical URL variable
-                        this.page.url = PAGE_URL;  
-                        
-                        // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                        this.page.identifier = PAGE_IDENTIFIER; 
-                    };
-                    */
-
-          (function () {
-            // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
-            var d = document,
-              s = d.createElement("script");
-
-            // IMPORTANT: Replace 3wmthemes with your forum shortname!
-            s.src = "https://3wmthemes.disqus.com/embed.js";
-
-            s.setAttribute("data-timestamp", +new Date());
-            (d.head || d.body).appendChild(s);
-          })();
-        </script>
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript" rel="nofollow">
-            comments powered by Disqus.
-          </a>
-        </noscript>
-      </div>
-      <!--//blog-comments-section-->
+      <CommentBox {slug} {title} />
+     
     </div>
-    <!--//container-->
   </article>
 
   <section class="promo-section theme-bg-light py-5 text-center">
@@ -263,5 +236,6 @@ export  $initHighlight;
       </figure>
     </div>
     <!--//container-->
+    
   </section>
-  <!--//promo-section-->
+  
