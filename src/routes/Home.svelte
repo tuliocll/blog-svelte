@@ -2,7 +2,9 @@
   import Newsletter from "../components/newsletter/Newsletter.svelte";
   import Post from "../components/post/Post.svelte";
   import Pagination from "../components/pagination/Pagination.svelte";
-  
+
+  import getAllPosts from "../http/services/posts/getAll"
+
   export let blogName;
   export let bio;
   export let profilePicture;
@@ -32,9 +34,17 @@
   />
   <section class="blog-list px-3 py-5 p-md-5">
     <div class="container">
-      {#each posts as post}
-        <Post {...post} />
-      {/each}
+      {#await getAllPosts()}
+      <h2>Loading....</h2>
+    {:then posts}
+    {#each posts.data as post}
+    <Post {...post.attributes} id={post.id} />
+  {/each}
+    {:catch err}
+      <h2>Error while loading the data</h2>
+    {/await}
+
+     
     </div>
 
     <Pagination

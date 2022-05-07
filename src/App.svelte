@@ -25,7 +25,7 @@ export let posts = [];
 		<div class="main-wrapper">
 			<Route path="post/:id" component="{Post}" />
 			<Route path="about" component="{Post}" />
-			<Route path="/" {blogName} {blogSubtitle} {newsletterText} {posts} component="{Home}" />
+			<Route path="/" {blogName} {blogSubtitle} {newsletterText} component="{Home}" />
 		</div>
   </Router>
 

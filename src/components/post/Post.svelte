@@ -1,15 +1,21 @@
 <script>
-  import { formatDistance } from "date-fns";
+  import { formatDistance, parseISO } from "date-fns";
   import pt_br from "date-fns/locale/pt-BR";
 
+  export let id;
   export let title;
   export let slug;
-  export let date;
+  export let publishedAt;
   export let readTime;
-  export let preview;
-  export let thumb;
+  export let content;
+  export let cover;
+  
 
-  const formatedDate = formatDistance(new Date(date), new Date(), {
+  const thumb = cover.data[0].attributes.formats.large.url
+  const api_url = API_URL;
+  const thumbnailUrl = `${api_url}${thumb}`
+
+  const formatedDate = formatDistance(new Date(publishedAt), new Date(), {
     addSuffix: true,
     locale: pt_br,
   });
@@ -19,7 +25,7 @@
   <div class="media">
     <img
       class="mr-3 img-fluid post-thumb d-none d-md-flex"
-      src={thumb}
+      src={thumbnailUrl}
       alt="image {title}"
     />
     <div class="media-body">
@@ -34,7 +40,7 @@
         >
       </div>
       <div class="intro">
-        {preview}
+        {content}
       </div>
       <a class="more-link" href="/post/{slug}">Continue lendo &rarr;</a>
     </div>
