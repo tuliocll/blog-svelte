@@ -2,8 +2,7 @@
   import Newsletter from "../components/newsletter/Newsletter.svelte";
   import Post from "../components/post/Post.svelte";
   import Pagination from "../components/pagination/Pagination.svelte";
-  import MarkdownIt from 'markdown-it'
-
+  
   export let blogName;
   export let bio;
   export let profilePicture;
