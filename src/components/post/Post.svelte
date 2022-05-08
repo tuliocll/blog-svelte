@@ -1,19 +1,17 @@
 <script>
-  import { formatDistance, parseISO } from "date-fns";
+  import { formatDistance } from "date-fns";
   import pt_br from "date-fns/locale/pt-BR";
 
-  export let id;
   export let title;
   export let slug;
   export let publishedAt;
   export let readTime;
   export let content;
   export let cover;
-  
 
-  const thumb = cover.data[0].attributes.formats.large.url
+  const thumb = cover.data.attributes.formats.thumbnail.url;
   const api_url = API_URL;
-  const thumbnailUrl = `${api_url}${thumb}`
+  const thumbnailUrl = `${api_url}${thumb}`;
 
   const formatedDate = formatDistance(new Date(publishedAt), new Date(), {
     addSuffix: true,
@@ -36,14 +34,20 @@
         <span class="date">Publicado {formatedDate}</span><span class="time"
           >{readTime} min de leitura</span
         ><span class="comment"
-          ><a href="/post/{slug}#comments"> <span data-cusdis-count-page-id="PAGINAa">0</span> comentarios</a></span
+          ><a href="/post/{slug}#comments">
+            <span data-cusdis-count-page-id={slug}>0</span> comentarios</a
+          ></span
         >
       </div>
       <div class="intro">
-        {content}
+        {content.slice(0, 200)}...
       </div>
       <a class="more-link" href="/post/{slug}">Continue lendo &rarr;</a>
     </div>
   </div>
-  <script defer data-host="https://cusdis.com" data-app-id={CUSDIS_KEY} src="https://cusdis.com/js/cusdis-count.umd.js"></script>
+  <script
+    defer
+    data-host="https://cusdis.com"
+    data-app-id={CUSDIS_KEY}
+    src="https://cusdis.com/js/cusdis-count.umd.js"></script>
 </div>

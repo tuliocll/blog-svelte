@@ -1,7 +1,6 @@
 <script>
   import { Link } from "svelte-navigator";
 
-
   export let blogName;
   export let bio;
   export let aboutMeText;

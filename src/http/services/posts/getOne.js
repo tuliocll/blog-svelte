@@ -1,19 +1,23 @@
 import qs from "qs";
 
-export default async function getAllPosts(page = 1) {
+export default async function getOnePost(slug = "") {
+  if (slug === "" || !slug) {
+    return;
+  }
+
   const api_url = API_URL;
 
   const query = qs.stringify({
-    pagination: {
-      page,
-      pageSize: 6,
+    filters: {
+      slug: {
+        $eq: slug,
+      },
     },
-    sort: ["publishedAt:desc"],
   });
 
   const response = await fetch(`${api_url}/api/posts?populate=*&${query}`);
 
   const data = await response.json();
 
-  return data;
+  return data.data[0];
 }
