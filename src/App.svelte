@@ -1,6 +1,8 @@
 <script>
   import { Router, Route } from "svelte-navigator";
 
+  import getAllAbout from "./http/services/about/getAll";
+
   import Sidebar from "./components/sidebar/Sidebar.svelte";
   import Footer from "./components/footer/Footer.svelte";
   import Home from "./routes/Home.svelte";
@@ -15,14 +17,21 @@
   export let blogSubtitle;
   export let newsletterText;
   export let posts = [];
+
+  let blogInfo = {};
+
+  getAllAbout().then((response) => {
+    blogInfo = response.attributes;
+    console.log(response.attributes);
+  });
 </script>
 
 <Router>
   <nav>
     <Sidebar
-      {blogName}
-      {bio}
-      {profilePicture}
+      blogName={blogInfo?.blogName ?? ""}
+      bio={blogInfo?.aboutMe ?? ""}
+      profilePicture={blogInfo?.photo?.data?.attributes?.url}
       {socialNetworks}
       {aboutMeText}
       {pages}

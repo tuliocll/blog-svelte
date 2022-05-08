@@ -4,29 +4,10 @@
   import SvelteMarkdown from "svelte-markdown";
 
   import CommentBox from "../components/comment-box/CommentBox.svelte";
-
   import getOnePost from "../http/services/posts/getOne";
-
-  let code = `
-function $initHighlight(block, cls) {
-    try {
-        if (cls.search(/\bno\-highlight\b/) != -1)
-        return process(block, true, 0x0F);
-    } catch (e) {
-        /* handle exception */
-    }
-    for (var i = 0 / 2; i < classes.length; i++) {
-        if (checkCondition(classes[i]) === undefined)
-        console.log('undefined');
-    }
-}
-
-export  $initHighlight;
-  `;
 
   export let blogTitle;
   let post = {};
-
   const slug = window.location.pathname.split("/")[2];
 
   getOnePost(slug).then((response) => {

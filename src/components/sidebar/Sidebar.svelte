@@ -7,6 +7,9 @@
   export let socialNetworks = [];
   export let profilePicture;
   export let pages = [];
+
+  const api_url = API_URL;
+  $: profileImage = `${api_url}${profilePicture}`;
 </script>
 
 <header class="header text-center">
@@ -29,8 +32,9 @@
       <div class="profile-section pt-3 pt-lg-0">
         <img
           class="profile-image mb-3 rounded-circle mx-auto"
-          src={profilePicture}
+          src={profileImage}
           alt="image {blogName}"
+          loading="lazy"
         />
 
         <div class="bio mb-3">
