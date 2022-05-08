@@ -4,12 +4,16 @@
 
   export let title;
   export let slug;
-  export let date;
+  export let publishedAt;
   export let readTime;
-  export let preview;
-  export let thumb;
+  export let content;
+  export let cover;
 
-  const formatedDate = formatDistance(new Date(date), new Date(), {
+  const thumb = cover.data.attributes.formats.thumbnail.url;
+  const api_url = API_URL;
+  const thumbnailUrl = `${api_url}${thumb}`;
+
+  const formatedDate = formatDistance(new Date(publishedAt), new Date(), {
     addSuffix: true,
     locale: pt_br,
   });
@@ -19,7 +23,7 @@
   <div class="media">
     <img
       class="mr-3 img-fluid post-thumb d-none d-md-flex"
-      src={thumb}
+      src={thumbnailUrl}
       alt="image {title}"
     />
     <div class="media-body">
@@ -30,14 +34,20 @@
         <span class="date">Publicado {formatedDate}</span><span class="time"
           >{readTime} min de leitura</span
         ><span class="comment"
-          ><a href="/post/{slug}#comments"> <span data-cusdis-count-page-id="PAGINAa">0</span> comentarios</a></span
+          ><a href="/post/{slug}#comments">
+            <span data-cusdis-count-page-id={slug}>0</span> comentarios</a
+          ></span
         >
       </div>
       <div class="intro">
-        {preview}
+        {content.slice(0, 200)}...
       </div>
       <a class="more-link" href="/post/{slug}">Continue lendo &rarr;</a>
     </div>
   </div>
-  <script defer data-host="https://cusdis.com" data-app-id={CUSDIS_KEY} src="https://cusdis.com/js/cusdis-count.umd.js"></script>
+  <script
+    defer
+    data-host="https://cusdis.com"
+    data-app-id={CUSDIS_KEY}
+    src="https://cusdis.com/js/cusdis-count.umd.js"></script>
 </div>

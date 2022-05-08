@@ -67,6 +67,7 @@ export default {
     commonjs(),
     replace({
       CUSDIS_KEY: JSON.stringify(process.env.CUSDIS_KEY),
+      API_URL: JSON.stringify(process.env.API_URL),
     }),
     // In dev mode, call `npm run start` once
     // the bundle has been generated
