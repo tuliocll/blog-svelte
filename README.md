@@ -1,8 +1,7 @@
 # Blog em Svelte
 
 Frontend do blog https://tuliocalil.com.br desenvolvido em Svelte.  
-Template HTML usado do site: https://themes.3rdwavemedia.com/.  
-
+Template HTML usado do site: https://themes.3rdwavemedia.com/.
 
 ### Features
 
@@ -11,20 +10,31 @@ Template HTML usado do site: https://themes.3rdwavemedia.com/.
 - Botão de clap(like)
 - Comentarios e contador de comentarios nas postagens.
 
+### Roadmap
+
+- [ ] Implementar tags nos posts.
+- [ ] Listar tags na sidebar.
+- [ ] Adicionar shimmer na sidebar.
+- [ ] Configurar newsletter.
+- [ ] Adicionar botão de compartilhar.
+- [ ] Implementar minutos de leitura nas postagens.
 
 ### Como rodar
 
 Clone o projeto:
+
 ```bash
 git clone
 ```
 
 Instale as dependencias:
+
 ```bash
 yarn install
 ```
 
 Configure o .env.
+
 ```bash
 cp .env.example .env
 ```
@@ -34,10 +44,10 @@ Crie uma conta no [Cusdis](https://cusdis.com/) e no [Lyket](https://app.lyket.d
 Mude a chave de api do Lyket nesse [arquivo](https://github.com/tuliocll/blog-svelte/blob/main/public/index.html#L38) para que os claps(likes) funcionem.
 
 ### Deploy
+
 ```bash
 yarn build
 ```
-
 
 <div align="center">
 
