@@ -18,13 +18,14 @@ Template HTML usado do site: https://themes.3rdwavemedia.com/.
 - [ ] Configurar newsletter.
 - [ ] Adicionar botão de compartilhar.
 - [ ] Implementar minutos de leitura nas postagens.
+- [ ] Usar/refatorar writable stores para infos basicas do blog (nome, descricao, etc).
 
 ### Como rodar
 
 Clone o projeto:
 
 ```bash
-git clone
+git clone git@github.com:tuliocll/blog-svelte.git
 ```
 
 Instale as dependencias:
