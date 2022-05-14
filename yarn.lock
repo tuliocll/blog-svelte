@@ -867,6 +867,11 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+reading-time-estimator@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/reading-time-estimator/-/reading-time-estimator-1.5.0.tgz#1101a9304b9f3f6bac48a8addf8b7829d3ac5c64"
+  integrity sha512-Nrww3htddpPmFhXOSZ6nJhZoUaT1lKbzD+gX/MjKhkmiGpgbAELHDx2RnfsQgzBEhdHnMabe9wWrAD2l/nAW+A==
+
 require-relative@^0.8.7:
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"

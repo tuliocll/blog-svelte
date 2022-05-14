@@ -9,6 +9,7 @@ Template HTML usado do site: https://themes.3rdwavemedia.com/.
 - Layout responsivo (isso é uma feature ?)
 - Botão de clap(like)
 - Comentarios e contador de comentarios nas postagens.
+- Tempo de leitura do post
 
 ### Roadmap
 
@@ -17,7 +18,7 @@ Template HTML usado do site: https://themes.3rdwavemedia.com/.
 - [ ] Adicionar shimmer na sidebar.
 - [ ] Configurar newsletter.
 - [ ] Adicionar botão de compartilhar.
-- [ ] Implementar minutos de leitura nas postagens.
+- [x] Implementar minutos de leitura nas postagens.
 - [x] Usar/refatorar writable stores para infos basicas do blog (nome, descricao, etc).
 - [ ] Refatorar para typescript
 - [ ] Melhorar acessibilidade

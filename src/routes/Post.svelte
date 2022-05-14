@@ -3,15 +3,18 @@
   import { formatDistance } from "date-fns";
   import pt_br from "date-fns/locale/pt-BR";
   import SvelteMarkdown from "svelte-markdown";
+  import { readingTime } from "reading-time-estimator";
 
   import CommentBox from "../components/comment-box/CommentBox.svelte";
   import getOnePost from "../http/services/posts/getOne";
 
   import { blogInfoStore } from "../stores/blogInfo.js";
 
-  export let blogInfo;
+  let blogInfo;
+
   let post = {};
   const slug = window.location.pathname.split("/")[2];
+  $: readTime = readingTime(post?.attributes?.content, 100);
 
   getOnePost(slug).then((response) => {
     post = response;
@@ -48,7 +51,7 @@
       <h2 class="title mb-2">{post?.attributes?.title || ""}</h2>
       <div class="meta mb-3">
         <span class="date">Publicado {formatedDate}</span><span class="time"
-          >5 min read</span
+          >{readTime.minutes} min de leitura</span
         ><span class="comment"
           ><a href="/post/{slug}#comments">
             <span data-cusdis-count-page-id={slug}>0</span> comentarios</a

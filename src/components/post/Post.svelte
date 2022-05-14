@@ -1,13 +1,17 @@
 <script>
   import { formatDistance } from "date-fns";
+  import { readingTime } from "reading-time-estimator";
+
   import pt_br from "date-fns/locale/pt-BR";
 
   export let title;
   export let slug;
   export let publishedAt;
-  export let readTime;
-  export let content;
+
+  export let content = "";
   export let cover;
+
+  let readTime = readingTime(content, 100);
 
   const thumb = cover.data.attributes.formats.thumbnail.url;
   const api_url = API_URL;
@@ -32,7 +36,7 @@
       </h3>
       <div class="meta mb-1">
         <span class="date">Publicado {formatedDate}</span><span class="time"
-          >{readTime} min de leitura</span
+          >{readTime.minutes} min de leitura</span
         ><span class="comment"
           ><a href="/post/{slug}#comments">
             <span data-cusdis-count-page-id={slug}>0</span> comentarios</a
