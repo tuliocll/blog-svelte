@@ -3,7 +3,6 @@
 
   export let blogName;
   export let bio;
-  export let aboutMeText;
   export let socialNetworks = [];
   export let profilePicture;
   export let pages = [];
@@ -38,7 +37,7 @@
         />
 
         <div class="bio mb-3">
-          {bio}<br /><Link to="/about">{aboutMeText}</Link>
+          {bio}<br /><Link to="/about">Veja mais sobre mim.</Link>
         </div>
 
         <ul class="social-list list-inline py-3 mx-auto">

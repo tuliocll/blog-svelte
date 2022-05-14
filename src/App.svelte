@@ -8,21 +8,10 @@
   import Home from "./routes/Home.svelte";
   import Post from "./routes/Post.svelte";
 
-  export let blogName;
-  export let bio;
-  export let profilePicture;
-  export let socialNetworks = [];
-  export let pages = [];
-  export let aboutMeText;
-  export let blogSubtitle;
-  export let newsletterText;
-  export let posts = [];
-
   let blogInfo = {};
 
   getAllAbout().then((response) => {
     blogInfo = response.attributes;
-    console.log(response.attributes);
   });
 </script>
 
@@ -32,9 +21,8 @@
       blogName={blogInfo?.blogName ?? ""}
       bio={blogInfo?.aboutMe ?? ""}
       profilePicture={blogInfo?.photo?.data?.attributes?.url}
-      {socialNetworks}
-      {aboutMeText}
-      {pages}
+      socialNetworks={blogInfo?.socialLinks}
+      pages={blogInfo?.pages}
     />
   </nav>
 
@@ -43,9 +31,9 @@
     <Route path="about" component={Post} />
     <Route
       path="/"
-      {blogName}
-      {blogSubtitle}
-      {newsletterText}
+      blogName={blogInfo?.blogName ?? ""}
+      blogSubtitle={blogInfo?.blogSubtitle}
+      newsletterText={blogInfo?.newsletterText}
       component={Home}
     />
   </div>
