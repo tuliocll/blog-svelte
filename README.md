@@ -18,7 +18,9 @@ Template HTML usado do site: https://themes.3rdwavemedia.com/.
 - [ ] Configurar newsletter.
 - [ ] Adicionar botão de compartilhar.
 - [ ] Implementar minutos de leitura nas postagens.
-- [ ] Usar/refatorar writable stores para infos basicas do blog (nome, descricao, etc).
+- [x] Usar/refatorar writable stores para infos basicas do blog (nome, descricao, etc).
+- [ ] Refatorar para typescript
+- [ ] Melhorar acessibilidade
 
 ### Como rodar
 

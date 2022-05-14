@@ -8,34 +8,28 @@
   import Home from "./routes/Home.svelte";
   import Post from "./routes/Post.svelte";
 
+  import { blogInfoStore } from "./stores/blogInfo.js";
+
   let blogInfo = {};
 
+  blogInfoStore.subscribe((value) => {
+    blogInfo = value;
+  });
+
   getAllAbout().then((response) => {
-    blogInfo = response.attributes;
+    blogInfoStore.set(response.attributes);
   });
 </script>
 
 <Router>
   <nav>
-    <Sidebar
-      blogName={blogInfo?.blogName ?? ""}
-      bio={blogInfo?.aboutMe ?? ""}
-      profilePicture={blogInfo?.photo?.data?.attributes?.url}
-      socialNetworks={blogInfo?.socialLinks}
-      pages={blogInfo?.pages}
-    />
+    <Sidebar />
   </nav>
 
   <div class="main-wrapper">
     <Route path="post/:id" component={Post} />
     <Route path="about" component={Post} />
-    <Route
-      path="/"
-      blogName={blogInfo?.blogName ?? ""}
-      blogSubtitle={blogInfo?.blogSubtitle}
-      newsletterText={blogInfo?.newsletterText}
-      component={Home}
-    />
+    <Route component={Home} />
   </div>
 </Router>
 

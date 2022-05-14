@@ -1,18 +1,26 @@
 <script>
   import { Link } from "svelte-navigator";
-
-  export let blogName;
-  export let bio;
-  export let socialNetworks = [];
-  export let profilePicture;
-  export let pages = [];
+  import { onDestroy } from "svelte";
+  import { blogInfoStore } from "../../stores/blogInfo.js";
 
   const api_url = API_URL;
-  $: profileImage = `${api_url}${profilePicture}`;
+  $: profileImage = `${api_url}${blogInfo?.photo?.data?.attributes.url}`;
+
+  let blogInfo;
+
+  const unsubscribe = blogInfoStore.subscribe((value) => {
+    blogInfo = value;
+    blogInfo.pages = value.pages.map((page) => page);
+    blogInfo.socialLinks = value.socialLinks.map((social) => social);
+  });
+
+  onDestroy(unsubscribe);
 </script>
 
 <header class="header text-center">
-  <h1 class="blog-name pt-lg-4 mb-0"><Link to="/">{blogName}</Link></h1>
+  <h1 class="blog-name pt-lg-4 mb-0">
+    <Link to="/">{blogInfo.blogName}</Link>
+  </h1>
 
   <nav class="navbar navbar-expand-lg navbar-dark">
     <button
@@ -32,16 +40,16 @@
         <img
           class="profile-image mb-3 rounded-circle mx-auto"
           src={profileImage}
-          alt="image {blogName}"
+          alt="image {blogInfo.blogName}"
           loading="lazy"
         />
 
         <div class="bio mb-3">
-          {bio}<br /><Link to="/about">Veja mais sobre mim.</Link>
+          {blogInfo.aboutMe}<br /><Link to="/about">Veja mais sobre mim.</Link>
         </div>
 
         <ul class="social-list list-inline py-3 mx-auto">
-          {#each socialNetworks as social}
+          {#each blogInfo.socialLinks as social}
             <li class="list-inline-item">
               <a href={social.link}><i class="fab {social.icon} fa-fw" /></a>
             </li>
@@ -51,7 +59,7 @@
       </div>
 
       <ul class="navbar-nav flex-column text-left">
-        {#each pages as page}
+        {#each blogInfo.pages as page}
           <li class="nav-item active">
             <Link class="nav-link" to={page.link}
               ><i class="fas {page.icon} fa-fw mr-2" />{page.name}

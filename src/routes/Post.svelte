@@ -1,4 +1,5 @@
 <script>
+  import { onDestroy } from "svelte";
   import { formatDistance } from "date-fns";
   import pt_br from "date-fns/locale/pt-BR";
   import SvelteMarkdown from "svelte-markdown";
@@ -6,7 +7,9 @@
   import CommentBox from "../components/comment-box/CommentBox.svelte";
   import getOnePost from "../http/services/posts/getOne";
 
-  export let blogTitle;
+  import { blogInfoStore } from "../stores/blogInfo.js";
+
+  export let blogInfo;
   let post = {};
   const slug = window.location.pathname.split("/")[2];
 
@@ -27,10 +30,16 @@
         locale: pt_br,
       })
     : "";
+
+  const unsubscribe = blogInfoStore.subscribe((value) => {
+    blogInfo = value;
+  });
+
+  onDestroy(unsubscribe);
 </script>
 
 <svelte:head>
-  <title>{blogTitle} - {post?.attributes?.title || ""}</title>
+  <title>{blogInfo.blogName} - {post?.attributes?.title || ""}</title>
 </svelte:head>
 
 <article class="blog-post px-3 py-5 p-md-5">

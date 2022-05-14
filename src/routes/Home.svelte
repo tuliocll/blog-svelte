@@ -1,14 +1,16 @@
 <script>
+  import { onDestroy } from "svelte";
+
   import Newsletter from "../components/newsletter/Newsletter.svelte";
   import Post from "../components/post/Post.svelte";
   import Pagination from "../components/pagination/Pagination.svelte";
   import PostShimmer from "../components/post-shimmer/PostShimmer.svelte";
 
+  import { blogInfoStore } from "../stores/blogInfo.js";
+
   import getAllPosts from "../http/services/posts/getAll";
 
-  export let blogName;
-  export let blogSubtitle;
-  export let newsletterText;
+  let blogInfo;
 
   let currentPage = 1;
 
@@ -19,9 +21,19 @@
   function handlePreviusPage() {
     currentPage -= 1;
   }
+
+  const unsubscribe = blogInfoStore.subscribe((value) => {
+    blogInfo = value;
+  });
+
+  onDestroy(unsubscribe);
 </script>
 
-<Newsletter {blogName} {blogSubtitle} {newsletterText} />
+<Newsletter
+  blogName={blogInfo.blogName}
+  blogSubtitle={blogInfo.blogSubtitle}
+  newsletterText={blogInfo.newsletterText}
+/>
 <section class="blog-list px-3 py-5 p-md-5">
   <div class="container">
     {#await getAllPosts(currentPage)}
