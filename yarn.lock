@@ -872,6 +872,11 @@ reading-time-estimator@^1.5.0:
   resolved "https://registry.yarnpkg.com/reading-time-estimator/-/reading-time-estimator-1.5.0.tgz#1101a9304b9f3f6bac48a8addf8b7829d3ac5c64"
   integrity sha512-Nrww3htddpPmFhXOSZ6nJhZoUaT1lKbzD+gX/MjKhkmiGpgbAELHDx2RnfsQgzBEhdHnMabe9wWrAD2l/nAW+A==
 
+remove-markdown@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/remove-markdown/-/remove-markdown-0.5.0.tgz#a596264bbd60b9ceab2e2ae86e5789eee91aee32"
+  integrity sha512-x917M80K97K5IN1L8lUvFehsfhR8cYjGQ/yAMRI9E7JIKivtl5Emo5iD13DhMr+VojzMCiYk8V2byNPwT/oapg==
+
 require-relative@^0.8.7:
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"

@@ -51,7 +51,8 @@
         <ul class="social-list list-inline py-3 mx-auto">
           {#each blogInfo.socialLinks as social}
             <li class="list-inline-item">
-              <a href={social.link}><i class="fab {social.icon} fa-fw" /></a>
+              <Link to={social.link}><i class="fab {social.icon} fa-fw" /></Link
+              >
             </li>
           {/each}
         </ul>

@@ -4,19 +4,23 @@
   import pt_br from "date-fns/locale/pt-BR";
   import SvelteMarkdown from "svelte-markdown";
   import { readingTime } from "reading-time-estimator";
+  import { Link, useNavigate } from "svelte-navigator";
 
   import CommentBox from "../components/comment-box/CommentBox.svelte";
   import getOnePost from "../http/services/posts/getOne";
 
   import { blogInfoStore } from "../stores/blogInfo.js";
 
+  const navigate = useNavigate();
   let blogInfo;
-
   let post = {};
   const slug = window.location.pathname.split("/")[2];
   $: readTime = readingTime(post?.attributes?.content, 100);
 
   getOnePost(slug).then((response) => {
+    if (!response) {
+      navigate("/");
+    }
     post = response;
     setTimeout(() => {
       hljs.highlightAll();
@@ -53,8 +57,8 @@
         <span class="date">Publicado {formatedDate}</span><span class="time"
           >{readTime.minutes} min de leitura</span
         ><span class="comment"
-          ><a href="/post/{slug}#comments">
-            <span data-cusdis-count-page-id={slug}>0</span> comentarios</a
+          ><Link to="/post/{slug}#comments">
+            <span data-cusdis-count-page-id={slug}>{" "}</span> comentarios</Link
           ></span
         >
       </div>
@@ -62,19 +66,19 @@
 
     <div class="blog-post-body">
       <figure class="blog-banner">
-        <a href="#"
+        <Link to="#"
           ><img
             class="img-fluid"
             src={thumbnailUrl}
             alt="image {post?.attributes?.title || ''}"
-          /></a
+          /></Link
         >
         <figcaption class="mt-2 text-center image-caption">
           <SvelteMarkdown source={post?.attributes?.coverLegend || ""} />
         </figcaption>
       </figure>
 
-      <SvelteMarkdown source={post?.attributes?.content} />
+      <SvelteMarkdown source={post?.attributes?.content ?? ""} />
     </div>
 
     <div class="mt-5">
@@ -99,6 +103,9 @@
     <CommentBox {slug} title={post?.attributes?.title || ""} />
   </div>
 </article>
+<!-- 
+
+  DESATIVADO TEMPORARIAMENTE
 
 <section class="promo-section theme-bg-light py-5 text-center">
   <div class="container">
@@ -118,5 +125,5 @@
       >
     </figure>
   </div>
-  <!--//container-->
-</section>
+ 
+</section> -->

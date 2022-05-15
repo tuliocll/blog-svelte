@@ -1,6 +1,7 @@
 <script>
   import { formatDistance } from "date-fns";
   import { readingTime } from "reading-time-estimator";
+  import { Link } from "svelte-navigator";
 
   import pt_br from "date-fns/locale/pt-BR";
 
@@ -32,14 +33,14 @@
     />
     <div class="media-body">
       <h3 class="title mb-1">
-        <a href="/post/{slug}">{title}</a>
+        <Link to="/post/{slug}">{title}</Link>
       </h3>
       <div class="meta mb-1">
         <span class="date">Publicado {formatedDate}</span><span class="time"
           >{readTime.minutes} min de leitura</span
         ><span class="comment"
-          ><a href="/post/{slug}#comments">
-            <span data-cusdis-count-page-id={slug}>0</span> comentarios</a
+          ><Link to="/post/{slug}#comments">
+            <span data-cusdis-count-page-id={slug}>0</span> comentarios</Link
           ></span
         >
       </div>
