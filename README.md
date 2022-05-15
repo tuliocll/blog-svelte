@@ -23,6 +23,7 @@ Template HTML usado do site: https://themes.3rdwavemedia.com/.
 - [ ] Refatorar para typescript
 - [ ] Melhorar acessibilidade
 - [ ] Melhorar SEO
+- [ ] Criar feature toggle
 
 ### Como rodar
 
