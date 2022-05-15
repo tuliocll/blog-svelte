@@ -2,7 +2,7 @@
   import { formatDistance } from "date-fns";
   import { readingTime } from "reading-time-estimator";
   import { Link } from "svelte-navigator";
-
+  import SvelteMardown from "svelte-markdown";
   import pt_br from "date-fns/locale/pt-BR";
 
   export let title;
@@ -45,7 +45,12 @@
         >
       </div>
       <div class="intro">
-        {content.slice(0, 200)}...
+        <SvelteMardown
+          source={content.slice(0, 200)}
+          options={{
+            xhtml: true,
+          }}
+        />
       </div>
       <a class="more-link" href="/post/{slug}">Continue lendo &rarr;</a>
     </div>
