@@ -46,7 +46,11 @@
 </script>
 
 <svelte:head>
-  <title>{blogInfo.blogName} - {post?.attributes?.title || ""}</title>
+  <title
+    >{blogInfo.blogName}
+    {post?.attributes?.title ? " - " : ""}
+    {post?.attributes?.title || ""}</title
+  >
 </svelte:head>
 
 <article class="blog-post px-3 py-5 p-md-5">

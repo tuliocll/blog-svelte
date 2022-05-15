@@ -29,6 +29,10 @@
   onDestroy(unsubscribe);
 </script>
 
+<svelte:head>
+  <title>{blogInfo.blogName}</title>
+</svelte:head>
+
 <Newsletter
   blogName={blogInfo.blogName}
   blogSubtitle={blogInfo.blogSubtitle}

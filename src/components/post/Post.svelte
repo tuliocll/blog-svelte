@@ -2,8 +2,9 @@
   import { formatDistance } from "date-fns";
   import { readingTime } from "reading-time-estimator";
   import { Link } from "svelte-navigator";
-  import SvelteMardown from "svelte-markdown";
   import pt_br from "date-fns/locale/pt-BR";
+  import { marked } from "marked";
+  import DOMPurify from "dompurify";
 
   export let title;
   export let slug;
@@ -22,6 +23,11 @@
     addSuffix: true,
     locale: pt_br,
   });
+
+  let html = marked.parse(content);
+  let contentParsed = DOMPurify.sanitize(html, {
+    USE_PROFILES: { html: false },
+  }).replace("&nbsp;", " ");
 </script>
 
 <div class="item mb-5">
@@ -45,12 +51,7 @@
         >
       </div>
       <div class="intro">
-        <SvelteMardown
-          source={content.slice(0, 200)}
-          options={{
-            xhtml: true,
-          }}
-        />
+        {contentParsed.slice(0, 200)}...
       </div>
       <a class="more-link" href="/post/{slug}">Continue lendo &rarr;</a>
     </div>
