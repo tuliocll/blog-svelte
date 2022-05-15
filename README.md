@@ -22,6 +22,7 @@ Template HTML usado do site: https://themes.3rdwavemedia.com/.
 - [x] Usar/refatorar writable stores para infos basicas do blog (nome, descricao, etc).
 - [ ] Refatorar para typescript
 - [ ] Melhorar acessibilidade
+- [ ] Melhorar SEO
 
 ### Como rodar
 
