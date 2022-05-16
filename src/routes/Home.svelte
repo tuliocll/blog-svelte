@@ -13,6 +13,7 @@
   let blogInfo;
 
   let currentPage = 1;
+  let totalPages = 1;
 
   function handleNextPage() {
     currentPage += 1;
@@ -25,6 +26,14 @@
   const unsubscribe = blogInfoStore.subscribe((value) => {
     blogInfo = value;
   });
+
+  async function getPosts(page) {
+    const response = await getAllPosts(page);
+
+    totalPages = response.meta.pagination.pageCount;
+
+    return response;
+  }
 
   onDestroy(unsubscribe);
 </script>
@@ -40,7 +49,7 @@
 />
 <section class="blog-list px-3 py-5 p-md-5">
   <div class="container">
-    {#await getAllPosts(currentPage)}
+    {#await getPosts(currentPage)}
       <PostShimmer />
       <PostShimmer />
       <PostShimmer />
@@ -56,6 +65,7 @@
 
   <Pagination
     page={currentPage}
+    {totalPages}
     on:next-page={handleNextPage}
     on:previus-page={handlePreviusPage}
   />
