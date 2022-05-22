@@ -66,6 +66,18 @@ photo {
   object-fit: cover !important;
 }
 
+.blog-post-body img {
+  display: block;
+  margin: 1.125rem auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.blog-post-body img::before {
+  content: "\a";
+  white-space: pre;
+}
+
 @-webkit-keyframes placeholderShimmer {
   0% {
     background-position: -468px 0;
