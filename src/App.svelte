@@ -31,6 +31,11 @@
     <Route path="about" component={Post} />
     <Route component={Home} />
   </div>
+  <script
+    defer
+    data-host="https://cusdis.com"
+    data-app-id={CUSDIS_KEY}
+    src="https://cusdis.com/js/cusdis-count.umd.js"></script>
 </Router>
 
 <Footer />

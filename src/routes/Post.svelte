@@ -15,6 +15,7 @@
   let blogInfo;
   let post = {};
   const slug = window.location.pathname.split("/")[2];
+
   $: readTime = readingTime(post?.attributes?.content, 100);
 
   getOnePost(slug).then((response) => {
@@ -22,6 +23,7 @@
       navigate("/");
     }
     post = response;
+
     setTimeout(() => {
       hljs.highlightAll();
     }, 200);

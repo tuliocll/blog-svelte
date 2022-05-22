@@ -56,9 +56,4 @@
       <a class="more-link" href="/post/{slug}">Continue lendo &rarr;</a>
     </div>
   </div>
-  <script
-    defer
-    data-host="https://cusdis.com"
-    data-app-id={CUSDIS_KEY}
-    src="https://cusdis.com/js/cusdis-count.umd.js"></script>
 </div>
