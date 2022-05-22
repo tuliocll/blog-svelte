@@ -62,7 +62,7 @@
           >{readTime.minutes} min de leitura</span
         ><span class="comment"
           ><Link to="/post/{slug}#comments">
-            <span data-cusdis-count-page-id={slug}>{" "}</span> comentarios</Link
+            <span data-cusdis-count-page-id={slug}>0</span> comentarios</Link
           ></span
         >
       </div>
