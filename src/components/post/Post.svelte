@@ -33,7 +33,7 @@
 <div class="item mb-5">
   <div class="media">
     <img
-      class="mr-3 img-fluid post-thumb d-none d-md-flex"
+      class="mr-3 post-thumb d-none d-md-flex"
       src={thumbnailUrl}
       alt="image {title}"
     />

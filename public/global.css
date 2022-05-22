@@ -60,6 +60,12 @@ photo {
   margin-top: 15px;
 }
 
+.post-thumb {
+  max-width: 150px !important;
+  height: 150px;
+  object-fit: cover !important;
+}
+
 @-webkit-keyframes placeholderShimmer {
   0% {
     background-position: -468px 0;
