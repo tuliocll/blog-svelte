@@ -8,6 +8,7 @@
 
   import CommentBox from "../components/comment-box/CommentBox.svelte";
   import getOnePost from "../http/services/posts/getOne";
+  import ModalImage from "../components/modal-image/ModalImage.svelte";
 
   import { blogInfoStore } from "../stores/blogInfo.js";
 
@@ -15,6 +16,9 @@
   let blogInfo;
   let post = {};
   const slug = window.location.pathname.split("/")[2];
+  let showModalImage = false;
+  let modalImageCaption = "";
+  let modalImageSrc = "";
 
   $: readTime = readingTime(post?.attributes?.content, 100);
 
@@ -31,7 +35,7 @@
 
   $: thumb = post?.attributes?.cover?.data.attributes.url;
   const api_url = API_URL;
-  $: thumbnailUrl = `${api_url}${thumb}`;
+  $: thumbnailUrl = thumb ? `${api_url}${thumb}` : "";
 
   $: formatedDate = post?.attributes?.publishedAt
     ? formatDistance(new Date(post?.attributes?.publishedAt), new Date(), {
@@ -43,6 +47,28 @@
   const unsubscribe = blogInfoStore.subscribe((value) => {
     blogInfo = value;
   });
+
+  function toggleModalImage(element) {
+    if (element && element.target) {
+      modalImageCaption = element.target.alt;
+      modalImageSrc = element.target.src;
+    }
+    showModalImage = !showModalImage;
+  }
+
+  function setImagesClick() {
+    const images = document
+      .getElementById("content-body")
+      .querySelectorAll("img");
+
+    images.forEach((image) => {
+      image.onclick = toggleModalImage;
+    });
+  }
+
+  setTimeout(() => {
+    setImagesClick();
+  }, 900);
 
   onDestroy(unsubscribe);
 </script>
@@ -56,6 +82,14 @@
 </svelte:head>
 
 <article class="blog-post px-3 py-5 p-md-5">
+  {#if showModalImage}
+    <ModalImage
+      on:close-modal={toggleModalImage}
+      image={modalImageSrc}
+      caption={modalImageCaption}
+    />
+  {/if}
+
   <div class="container">
     <header class="blog-post-header">
       <h2 class="title mb-2">{post?.attributes?.title || ""}</h2>
@@ -83,8 +117,9 @@
           <SvelteMarkdown source={post?.attributes?.coverLegend || ""} />
         </figcaption>
       </figure>
-
-      <SvelteMarkdown source={post?.attributes?.content ?? ""} />
+      <div id="content-body">
+        <SvelteMarkdown source={post?.attributes?.content ?? ""} />
+      </div>
     </div>
 
     <div class="mt-5">
