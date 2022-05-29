@@ -14,19 +14,19 @@
   export let content = "";
   export let cover;
 
-  let readTime = readingTime(content, 100);
+  $: readTime = readingTime(content, 100);
 
-  const thumb = cover.data.attributes.formats.thumbnail.url;
+  $: thumb = cover.data.attributes.formats.thumbnail.url;
   const api_url = API_URL;
-  const thumbnailUrl = `${api_url}${thumb}`;
+  $: thumbnailUrl = `${api_url}${thumb}`;
 
-  const formatedDate = formatDistance(new Date(publishedAt), new Date(), {
+  $: formatedDate = formatDistance(new Date(publishedAt), new Date(), {
     addSuffix: true,
     locale: pt_br,
   });
 
-  let html = marked.parse(content);
-  let contentParsed = DOMPurify.sanitize(html, {
+  $: html = marked.parse(content);
+  $: contentParsed = DOMPurify.sanitize(html, {
     USE_PROFILES: { html: false },
   }).replace("&nbsp;", " ");
 </script>

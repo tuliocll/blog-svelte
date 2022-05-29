@@ -16,13 +16,15 @@
   let currentPage = 1;
   let totalPages = 1;
 
-  const posts = useQuery(["all.posts", currentPage], () =>
+  $: posts = useQuery(["all.posts", currentPage], () =>
     getAllPosts(currentPage)
   );
 
   if (getPageFromURL()) {
     currentPage = Number(getPageFromURL());
   }
+
+  $: totalPages = $posts?.data?.meta?.pagination.pageCount;
 
   function getPageFromURL() {
     try {
