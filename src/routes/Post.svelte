@@ -2,13 +2,13 @@
   import { onDestroy } from "svelte";
   import { formatDistance } from "date-fns";
   import pt_br from "date-fns/locale/pt-BR";
-  import SvelteMarkdown from "svelte-markdown";
   import { readingTime } from "reading-time-estimator";
   import { Link, useNavigate } from "svelte-navigator";
 
   import CommentBox from "../components/comment-box/CommentBox.svelte";
   import getOnePost from "../http/services/posts/getOne";
   import ModalImage from "../components/modal-image/ModalImage.svelte";
+  import Markdown from "../components/markdown/Markdown.svelte";
 
   import { blogInfoStore } from "../stores/blogInfo.js";
 
@@ -114,11 +114,11 @@
           /></Link
         >
         <figcaption class="mt-2 text-center image-caption">
-          <SvelteMarkdown source={post?.attributes?.coverLegend || ""} />
+          <Markdown content={post?.attributes?.coverLegend} />
         </figcaption>
       </figure>
       <div id="content-body">
-        <SvelteMarkdown source={post?.attributes?.content ?? ""} />
+        <Markdown content={post?.attributes?.content} />
       </div>
     </div>
 
