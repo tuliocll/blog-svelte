@@ -5,4 +5,11 @@
     <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for
     developers</small
   >
+  <script
+    defer
+    data-host="https://cusdis.com"
+    data-app-id={CUSDIS_KEY}
+    src="https://cusdis.com/js/cusdis-count.umd.js"></script>
+
+  <script async src="https://cusdis.com/js/cusdis.es.js"></script>
 </footer>

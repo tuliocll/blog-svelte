@@ -15,9 +15,7 @@ export default async function getOnePost(slug = "") {
     },
   });
 
-  const response = await fetch(`${api_url}/api/posts?populate=*&${query}`);
-
-  const data = await response.json();
-
-  return data.data[0];
+  return fetch(`${api_url}/api/posts?populate=*&${query}`).then((res) =>
+    res.json()
+  );
 }

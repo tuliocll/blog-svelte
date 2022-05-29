@@ -1,6 +1,7 @@
 <script>
   import { Router, Route } from "svelte-navigator";
   import { GoogleAnalytics } from "@beyonk/svelte-google-analytics";
+  import { QueryClient, QueryClientProvider } from "@sveltestack/svelte-query";
 
   import getAllAbout from "./http/services/about/getAll";
 
@@ -12,6 +13,7 @@
   import { blogInfoStore } from "./stores/blogInfo.js";
 
   let blogInfo = {};
+  const queryClient = new QueryClient();
 
   blogInfoStore.subscribe((value) => {
     blogInfo = value;
@@ -20,6 +22,8 @@
   getAllAbout().then((response) => {
     blogInfoStore.set(response.attributes);
   });
+
+  console.log("carrega");
 </script>
 
 <GoogleAnalytics properties={[GOOGLE_ANALYTICS]} />
@@ -30,15 +34,12 @@
   </nav>
 
   <div class="main-wrapper">
-    <Route path="post/:id" component={Post} />
-    <Route path="about" component={Post} />
-    <Route component={Home} />
+    <QueryClientProvider client={queryClient}>
+      <Route path="post/:id" component={Post} />
+      <Route path="about" component={Post} />
+      <Route component={Home} />
+    </QueryClientProvider>
   </div>
-  <script
-    defer
-    data-host="https://cusdis.com"
-    data-app-id={CUSDIS_KEY}
-    src="https://cusdis.com/js/cusdis-count.umd.js"></script>
 </Router>
 
 <Footer />

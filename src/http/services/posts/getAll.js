@@ -11,9 +11,7 @@ export default async function getAllPosts(page = 1) {
     sort: ["publishedAt:desc"],
   });
 
-  const response = await fetch(`${api_url}/api/posts?populate=*&${query}`);
-
-  const data = await response.json();
-
-  return data;
+  return fetch(`${api_url}/api/posts?populate=*&${query}`).then((res) =>
+    res.json()
+  );
 }

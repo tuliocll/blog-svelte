@@ -1,6 +1,11 @@
 <script>
   export let slug;
   export let title;
+
+  // Just to fix CUDIS sync error
+  setTimeout(() => {
+    d();
+  }, 1000);
 </script>
 
 <section id="comments" class="blog-comments-section">
@@ -12,5 +17,4 @@
     data-page-url={location.href}
     data-page-title={title}
   />
-  <script async src="https://cusdis.com/js/cusdis.es.js"></script>
 </section>

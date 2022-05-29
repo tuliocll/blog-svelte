@@ -4,6 +4,7 @@
   import pt_br from "date-fns/locale/pt-BR";
   import { readingTime } from "reading-time-estimator";
   import { Link, useNavigate } from "svelte-navigator";
+  import { useQuery } from "@sveltestack/svelte-query";
 
   import CommentBox from "../components/comment-box/CommentBox.svelte";
   import getOnePost from "../http/services/posts/getOne";
@@ -14,34 +15,33 @@
 
   const navigate = useNavigate();
   let blogInfo;
-  let post = {};
+
   const slug = window.location.pathname.split("/")[2];
   let showModalImage = false;
   let modalImageCaption = "";
   let modalImageSrc = "";
 
-  $: readTime = readingTime(post?.attributes?.content, 100);
+  const post = useQuery(`post-${slug}`, () => getOnePost(slug));
 
-  getOnePost(slug).then((response) => {
-    if (!response) {
-      navigate("/");
-    }
-    post = response;
+  $: readTime = readingTime($post?.data?.data[0].attributes?.content, 100);
 
-    setTimeout(() => {
-      hljs.highlightAll();
-    }, 200);
-  });
+  setTimeout(() => {
+    hljs.highlightAll();
+  }, 400);
 
-  $: thumb = post?.attributes?.cover?.data.attributes.url;
+  $: thumb = $post?.data?.data[0].attributes?.cover?.data.attributes.url;
   const api_url = API_URL;
   $: thumbnailUrl = thumb ? `${api_url}${thumb}` : "";
 
-  $: formatedDate = post?.attributes?.publishedAt
-    ? formatDistance(new Date(post?.attributes?.publishedAt), new Date(), {
-        addSuffix: true,
-        locale: pt_br,
-      })
+  $: formatedDate = $post?.data?.data[0].attributes?.publishedAt
+    ? formatDistance(
+        new Date($post?.data?.data[0].attributes?.publishedAt),
+        new Date(),
+        {
+          addSuffix: true,
+          locale: pt_br,
+        }
+      )
     : "";
 
   const unsubscribe = blogInfoStore.subscribe((value) => {
@@ -76,8 +76,8 @@
 <svelte:head>
   <title
     >{blogInfo.blogName}
-    {post?.attributes?.title ? " - " : ""}
-    {post?.attributes?.title || ""}</title
+    {$post?.data?.data[0].attributes?.title ? " - " : ""}
+    {$post?.data?.data[0].attributes?.title || ""}</title
   >
 </svelte:head>
 
@@ -92,7 +92,7 @@
 
   <div class="container">
     <header class="blog-post-header">
-      <h2 class="title mb-2">{post?.attributes?.title || ""}</h2>
+      <h2 class="title mb-2">{$post?.data?.data[0].attributes?.title || ""}</h2>
       <div class="meta mb-3">
         <span class="date">Publicado {formatedDate}</span><span class="time"
           >{readTime.minutes} min de leitura</span
@@ -110,15 +110,15 @@
           ><img
             class="img-fluid"
             src={thumbnailUrl}
-            alt="image {post?.attributes?.title || ''}"
+            alt="image {$post?.data?.data[0].attributes?.title || ''}"
           /></Link
         >
         <figcaption class="mt-2 text-center image-caption">
-          <Markdown content={post?.attributes?.coverLegend} />
+          <Markdown content={$post?.data?.data[0].attributes?.coverLegend} />
         </figcaption>
       </figure>
       <div id="content-body">
-        <Markdown content={post?.attributes?.content} />
+        <Markdown content={$post?.data?.data[0].attributes?.content} />
       </div>
     </div>
 
@@ -130,7 +130,7 @@
       />
     </div>
 
-    <CommentBox {slug} title={post?.attributes?.title || ""} />
+    <CommentBox {slug} title={$post?.data?.data[0].attributes?.title || ""} />
   </div>
 </article>
 

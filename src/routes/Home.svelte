@@ -1,5 +1,6 @@
 <script>
   import { onDestroy } from "svelte";
+  import { useQuery } from "@sveltestack/svelte-query";
 
   import Newsletter from "../components/newsletter/Newsletter.svelte";
   import Post from "../components/post/Post.svelte";
@@ -14,6 +15,10 @@
 
   let currentPage = 1;
   let totalPages = 1;
+
+  const posts = useQuery(["all.posts", currentPage], () =>
+    getAllPosts(currentPage)
+  );
 
   if (getPageFromURL()) {
     currentPage = Number(getPageFromURL());
@@ -43,19 +48,6 @@
     blogInfo = value;
   });
 
-  async function getPosts(page) {
-    const response = await getAllPosts(page);
-
-    totalPages = response.meta.pagination.pageCount;
-
-    if (response.data.length === 0) {
-      window.location.href = "/";
-      return;
-    }
-
-    return response;
-  }
-
   onDestroy(unsubscribe);
 </script>
 
@@ -70,18 +62,18 @@
 />
 <section class="blog-list px-3 py-5 p-md-5">
   <div class="container">
-    {#await getPosts(currentPage)}
+    {#if $posts.isLoading}
       <PostShimmer />
       <PostShimmer />
       <PostShimmer />
       <PostShimmer />
-    {:then posts}
-      {#each posts.data as post}
+    {:else if $posts.error}
+      <h2>Algo deu errado ao buscar os dados</h2>
+    {:else if $posts.data}
+      {#each $posts.data.data as post}
         <Post {...post.attributes} id={post.id} />
       {/each}
-    {:catch err}
-      <h2>Error while loading the data</h2>
-    {/await}
+    {/if}
   </div>
 
   <Pagination
