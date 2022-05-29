@@ -55,11 +55,11 @@
   <title>{blogInfo.blogName}</title>
 </svelte:head>
 
-<Newsletter
+<!-- <Newsletter
   blogName={blogInfo.blogName}
   blogSubtitle={blogInfo.blogSubtitle}
   newsletterText={blogInfo.newsletterText}
-/>
+/> -->
 <section class="blog-list px-3 py-5 p-md-5">
   <div class="container">
     {#if $posts.isLoading}
