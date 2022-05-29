@@ -1,5 +1,6 @@
 <script>
   import { Router, Route } from "svelte-navigator";
+  import { GoogleAnalytics } from "@beyonk/svelte-google-analytics";
 
   import getAllAbout from "./http/services/about/getAll";
 
@@ -20,6 +21,8 @@
     blogInfoStore.set(response.attributes);
   });
 </script>
+
+<GoogleAnalytics properties={[GOOGLE_ANALYTICS]} />
 
 <Router>
   <nav>
