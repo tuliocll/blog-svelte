@@ -15,12 +15,28 @@
   let currentPage = 1;
   let totalPages = 1;
 
+  if (getPageFromURL()) {
+    currentPage = Number(getPageFromURL());
+  }
+
+  function getPageFromURL() {
+    try {
+      const queryPage = new URL(window.location.href).searchParams;
+
+      return queryPage.get("page") || false;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function handleNextPage() {
     currentPage += 1;
+    window.history.pushState("", "", `?page=${currentPage}`);
   }
 
   function handlePreviusPage() {
     currentPage -= 1;
+    window.history.pushState("", "", `?page=${currentPage}`);
   }
 
   const unsubscribe = blogInfoStore.subscribe((value) => {
@@ -31,6 +47,11 @@
     const response = await getAllPosts(page);
 
     totalPages = response.meta.pagination.pageCount;
+
+    if (response.data.length === 0) {
+      window.location.href = "/";
+      return;
+    }
 
     return response;
   }
