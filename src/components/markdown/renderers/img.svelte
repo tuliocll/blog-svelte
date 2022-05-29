@@ -1,4 +1,6 @@
 <script>
+  import { LazyImage } from "svelte-lazy-image";
+
   export let href = "";
   export let title = undefined;
   export let text = "";
@@ -23,4 +25,9 @@
   }
 </script>
 
-<img src={url} {title} alt={text} />
+<LazyImage
+  src={url}
+  placeholder="https://via.placeholder.com/250?text=TulioCalil"
+  alt={text}
+  {title}
+/>

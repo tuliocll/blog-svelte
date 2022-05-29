@@ -5,6 +5,7 @@
   import pt_br from "date-fns/locale/pt-BR";
   import { marked } from "marked";
   import DOMPurify from "dompurify";
+  import { LazyImage } from "svelte-lazy-image";
 
   export let title;
   export let slug;
@@ -32,11 +33,13 @@
 
 <div class="item mb-5">
   <div class="media">
-    <img
+    <LazyImage
       class="mr-3 post-thumb d-none d-md-flex"
       src={thumbnailUrl}
+      placeholder="https://via.placeholder.com/250?text=TulioCalil"
       alt="image {title}"
     />
+
     <div class="media-body">
       <h3 class="title mb-1">
         <Link to="/post/{slug}">{title}</Link>
