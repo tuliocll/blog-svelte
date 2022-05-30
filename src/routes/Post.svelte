@@ -27,7 +27,7 @@
 
   setTimeout(() => {
     hljs.highlightAll();
-  }, 400);
+  }, 1500);
 
   $: thumb = $post?.data?.data[0].attributes?.cover?.data.attributes.url;
   const api_url = API_URL;
