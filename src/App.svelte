@@ -7,6 +7,8 @@
 
   import Sidebar from "./components/sidebar/Sidebar.svelte";
   import Footer from "./components/footer/Footer.svelte";
+  import SEO from "./components/SEO/SEO.svelte";
+
   import Home from "./routes/Home.svelte";
   import Post from "./routes/Post.svelte";
 

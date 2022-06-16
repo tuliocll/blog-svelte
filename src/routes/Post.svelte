@@ -7,6 +7,7 @@
   import { useQuery } from "@sveltestack/svelte-query";
 
   import CommentBox from "../components/comment-box/CommentBox.svelte";
+  import SEO from "../components/SEO/SEO.svelte";
   import getOnePost from "../http/services/posts/getOne";
   import ModalImage from "../components/modal-image/ModalImage.svelte";
   import Markdown from "../components/markdown/Markdown.svelte";
@@ -133,6 +134,8 @@
     <CommentBox {slug} title={$post?.data?.data[0].attributes?.title || ""} />
   </div>
 </article>
+
+<SEO teste={$post?.data?.data[0].attributes?.title} />
 
 <!-- 
 DESATIVADO TEMPORARIAMENTE
