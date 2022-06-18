@@ -46,11 +46,11 @@
 
 	const api_url = import.meta.env ? import.meta.env.VITE_API_URL : '';
 
-	const readTime = readingTime(article.attributes?.content, 100);
+	const readTime = readingTime(article.attributes.content, 100);
 	const thumb = article.attributes.cover.data.attributes.url;
-	const thumbnailUrl = thumb ? `${api_url}${thumb}` : '';
-	const formatedDate = article.attributes?.publishedAt
-		? formatDistance(new Date(article.attributes?.publishedAt), new Date(), {
+	const thumbnailUrl = `${api_url}${thumb}`;
+	const formatedDate = article.attributes.publishedAt
+		? formatDistance(new Date(article.attributes.publishedAt), new Date(), {
 				addSuffix: true,
 				locale: ptBR
 		  })
@@ -74,7 +74,7 @@
 			});
 		}
 	}
-
+	console.log(thumbnailUrl, 'thumb', thumb);
 	const featuredImageObject = {
 		url: thumbnailUrl,
 		alt: article.attributes?.title,
@@ -116,7 +116,7 @@
 	title={article.attributes?.title}
 	datePublished={article.attributes?.publishedAt}
 	lastUpdated={article.attributes?.publishedAt}
-	metadescription={article.attributes?.content.slice(0, 255)}
+	metadescription={article.attributes?.content.slice(0, 150)}
 	timeToRead={readTime.minutes}
 	featuredImage={featuredImageObject}
 	ogImage={ogImageObject}
