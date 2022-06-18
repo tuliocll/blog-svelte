@@ -2,7 +2,8 @@
 	import { formatDistance } from 'date-fns';
 	import { readingTime } from 'reading-time-estimator';
 
-	import pt_br from 'date-fns/locale/pt-BR';
+	//@ts-ignore
+	import { ptBR } from 'date-fns/locale/index.js';
 	import { marked } from 'marked';
 	import { LazyImage } from 'svelte-lazy-image';
 
@@ -23,7 +24,7 @@
 
 	$: formatedDate = formatDistance(new Date(publishedAt), new Date(), {
 		addSuffix: true,
-		locale: pt_br
+		locale: ptBR
 	});
 
 	$: html = marked.parse(content);

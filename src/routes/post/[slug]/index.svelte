@@ -13,7 +13,8 @@
 <script lang="ts">
 	import { readingTime } from 'reading-time-estimator';
 	import { formatDistance } from 'date-fns';
-	import pt_br from 'date-fns/locale/pt-BR';
+	//@ts-ignore
+	import { ptBR } from 'date-fns/locale/index.js';
 	import SEO from '../../../components/SEO/SEO.svelte';
 
 	import ModalImage from '../../../components/modal-image/ModalImage.svelte';
@@ -51,7 +52,7 @@
 	$: formatedDate = article.attributes?.publishedAt
 		? formatDistance(new Date(article.attributes?.publishedAt), new Date(), {
 				addSuffix: true,
-				locale: pt_br
+				locale: ptBR
 		  })
 		: '';
 
