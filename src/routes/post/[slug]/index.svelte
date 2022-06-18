@@ -89,7 +89,7 @@
 
 	const { small, thumbnail, medium } = article.attributes.cover.data.attributes.formats;
 
-	const smallestImageSize = small?.url || thumbnail?.url || medium?.url || thumb;
+	const smallestImageSize = thumbnail?.url || small?.url || medium?.url || thumb;
 
 	const socialTagImageUrl = smallestImageSize.startsWith('https')
 		? smallestImageSize
