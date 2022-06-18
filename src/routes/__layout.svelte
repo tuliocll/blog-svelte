@@ -20,9 +20,11 @@
 	import { blogInfoStore } from '../stores/blogInfo.js';
 
 	blogInfoStore.set(about);
+
+	let GOOGLE_ANALYTICS = import.meta.env ? import.meta.env.VITE_GOOGLE_ANALYTICS : '';
 </script>
 
-<GoogleAnalytics properties={['']} />
+<GoogleAnalytics properties={[GOOGLE_ANALYTICS]} />
 
 <nav>
 	<Sidebar />
