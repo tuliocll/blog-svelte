@@ -46,10 +46,10 @@
 
 	const api_url = import.meta.env ? import.meta.env.VITE_API_URL : '';
 
-	$: readTime = readingTime(article.attributes?.content, 100);
-	$: thumb = article.attributes?.cover?.data.attributes.url;
-	$: thumbnailUrl = thumb ? `${api_url}${thumb}` : '';
-	$: formatedDate = article.attributes?.publishedAt
+	const readTime = readingTime(article.attributes?.content, 100);
+	const thumb = article.attributes.cover.data.attributes.url;
+	const thumbnailUrl = thumb ? `${api_url}${thumb}` : '';
+	const formatedDate = article.attributes?.publishedAt
 		? formatDistance(new Date(article.attributes?.publishedAt), new Date(), {
 				addSuffix: true,
 				locale: ptBR

@@ -3,7 +3,7 @@
 	import { blogInfoStore } from '../../stores/blogInfo.js';
 
 	const api_url = import.meta.env ? import.meta.env.VITE_API_URL : '';
-	console.log(api_url);
+
 	let blogInfo;
 
 	$: profileImage = `${api_url}${blogInfo?.photo?.data?.attributes.url}`;
