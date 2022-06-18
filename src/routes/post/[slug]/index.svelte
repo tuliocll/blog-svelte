@@ -21,6 +21,12 @@
 	import Markdown from '../../../components/markdown/Markdown.svelte';
 	import CommentBox from '../../../components/comment-box/CommentBox.svelte';
 
+	type imageType = {
+		name: string;
+		hash: string;
+		url: string;
+	};
+
 	type articleType = {
 		attributes: {
 			title: string;
@@ -30,6 +36,12 @@
 				data: {
 					attributes: {
 						url: string;
+						formats: {
+							large: imageType;
+							medium: imageType;
+							small: imageType;
+							thumbnail: imageType;
+						};
 					};
 				};
 			};
@@ -74,26 +86,32 @@
 			});
 		}
 	}
-	console.log(thumbnailUrl, 'thumb', thumb);
+
+	const { small, thumbnail, medium } = article.attributes.cover.data.attributes.formats;
+
+	const smallestImageSize = small?.url || thumbnail?.url || medium?.url || thumb;
+
+	const socialTagImageUrl = `${api_url}${smallestImageSize}`;
+
 	const featuredImageObject = {
-		url: thumbnailUrl,
+		url: socialTagImageUrl,
 		alt: article.attributes?.title,
 		width: 672,
 		height: 448,
 		caption: article.attributes?.title
 	};
 	const ogImageObject = {
-		url: thumbnailUrl,
+		url: socialTagImageUrl,
 		alt: article.attributes?.title
 	};
 
 	const ogSquareImageObject = {
-		url: thumbnailUrl,
+		url: socialTagImageUrl,
 		alt: article.attributes?.title
 	};
 
 	const twitterImageObject = {
-		url: thumbnailUrl,
+		url: socialTagImageUrl,
 		alt: article.attributes?.title
 	};
 
