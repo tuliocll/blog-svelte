@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { formatDistance } from 'date-fns';
 	import { readingTime } from 'reading-time-estimator';
 
@@ -18,9 +18,9 @@
 
 	$: readTime = readingTime(content, 100);
 
-	$: thumb = cover.data.attributes.formats.thumbnail.url;
+	$: thumb = cover.data.attributes.formats.thumbnail.url as string;
 	const api_url = API_URL;
-	$: thumbnailUrl = `${api_url}${thumb}`;
+	$: thumbnailUrl = thumb.startsWith('https') ? thumb : `${api_url}${thumb}`;
 
 	$: formatedDate = formatDistance(new Date(publishedAt), new Date(), {
 		addSuffix: true,

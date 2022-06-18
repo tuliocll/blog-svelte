@@ -60,7 +60,7 @@
 
 	const readTime = readingTime(article.attributes.content, 100);
 	const thumb = article.attributes.cover.data.attributes.url;
-	const thumbnailUrl = `${api_url}${thumb}`;
+	const thumbnailUrl = thumb.startsWith('https') ? thumb : `${api_url}${thumb}`;
 	const formatedDate = article.attributes.publishedAt
 		? formatDistance(new Date(article.attributes.publishedAt), new Date(), {
 				addSuffix: true,
@@ -91,7 +91,9 @@
 
 	const smallestImageSize = small?.url || thumbnail?.url || medium?.url || thumb;
 
-	const socialTagImageUrl = `${api_url}${smallestImageSize}`;
+	const socialTagImageUrl = smallestImageSize.startsWith('https')
+		? smallestImageSize
+		: `${api_url}${smallestImageSize}`;
 
 	const featuredImageObject = {
 		url: socialTagImageUrl,
