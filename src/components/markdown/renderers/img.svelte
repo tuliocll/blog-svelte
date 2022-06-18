@@ -1,33 +1,35 @@
 <script>
-  import { LazyImage } from "svelte-lazy-image";
+	import { LazyImage } from 'svelte-lazy-image';
 
-  export let href = "";
-  export let title = undefined;
-  export let text = "";
+	export let href = '';
+	export let title = undefined;
+	export let text = '';
 
-  let url = "";
+	let url = '';
 
-  const check = checkUrl(href);
+	let API_URL = import.meta.env ? import.meta.env.VITE_API_URL : '';
 
-  if (check) {
-    url = href;
-  } else {
-    url = `${API_URL}${href}`;
-  }
+	const check = checkUrl(href);
 
-  function checkUrl(url) {
-    try {
-      new URL(url);
-      return true;
-    } catch (_) {
-      return false;
-    }
-  }
+	if (check) {
+		url = href;
+	} else {
+		url = `${API_URL}${href}`;
+	}
+
+	function checkUrl(url) {
+		try {
+			new URL(url);
+			return true;
+		} catch (_) {
+			return false;
+		}
+	}
 </script>
 
 <LazyImage
-  src={url}
-  placeholder="https://via.placeholder.com/250?text=TulioCalil"
-  alt={text}
-  {title}
+	src={url}
+	placeholder="https://via.placeholder.com/250?text=TulioCalil"
+	alt={text}
+	{title}
 />

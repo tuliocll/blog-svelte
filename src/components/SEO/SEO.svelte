@@ -1,46 +1,138 @@
-<script>
-  import { MetaTags } from "svelte-meta-tags";
+<script lang="ts">
+	import defaultFeaturedImage from '$lib/assets/home/home.jpg';
+	import defaultOgImage from '$lib/assets/home/home-open-graph.jpg';
+	import defaultOgSquareImage from '$lib/assets/home/home-open-graph-square.jpg';
+	import defaultTwitterImage from '$lib/assets/home/home-twitter.jpg';
 
-  export let teste = "testando SEO";
+	import OpenGraph from './OpenGraph.svelte';
+	import SchemaOrg from './SchemaOrg.svelte';
+	import Twitter from './Twitter.svelte';
+
+	import website from '$lib/config/website';
+
+	import { onDestroy } from 'svelte';
+	import { blogInfoStore } from '../../stores/blogInfo.js';
+
+	const {
+		author,
+		entity,
+		facebookAuthorPage,
+		facebookPage,
+		ogLanguage,
+		siteLanguage,
+		siteShortTitle,
+		siteTitle,
+		siteUrl,
+		githubPage,
+		linkedinProfile,
+		telegramUsername,
+		tiktokUsername,
+		twitterUsername
+	} = website;
+
+	export let article = false;
+	export let breadcrumbs = [];
+	export let entityMeta = null;
+	export let lastUpdated;
+	export let datePublished;
+	export let metadescription;
+	export let slug;
+	export let timeToRead = 0;
+	export let title;
+
+	const defaultAlt =
+		'picture of a person with long, curly hair, wearing a red had taking a picture with an analogue camera';
+
+	let blogInfo;
+
+	const unsubscribe = blogInfoStore.subscribe((value) => {
+		blogInfo = value;
+		blogInfo.pages = value.pages.map((page) => page);
+		blogInfo.socialLinks = value.socialLinks.map((social) => social);
+	});
+
+	onDestroy(unsubscribe);
+
+	// imported props with fallback defaults
+	export let featuredImage = {
+		url: defaultFeaturedImage,
+		alt: defaultAlt,
+		width: 672,
+		height: 448,
+		caption: 'Home page'
+	};
+	export let ogImage = {
+		url: defaultOgImage,
+		alt: defaultAlt
+	};
+	export let ogSquareImage = {
+		url: defaultOgSquareImage,
+		alt: defaultAlt
+	};
+	export let twitterImage = {
+		url: defaultTwitterImage,
+		alt: defaultAlt
+	};
+
+	const url = `${siteUrl}/post/${slug}`;
+
+	const pageTitle = `${siteTitle} - ${title}`;
+
+	const openGraphProps = {
+		article,
+		datePublished,
+		lastUpdated,
+		image: ogImage,
+		squareImage: ogSquareImage,
+		metadescription,
+		ogLanguage,
+		pageTitle,
+		siteTitle,
+		url,
+		...(article ? { datePublished, lastUpdated, facebookPage, facebookAuthorPage } : {})
+	};
+	const schemaOrgProps = {
+		article,
+		author,
+		breadcrumbs,
+		datePublished,
+		entity,
+		lastUpdated,
+		entityMeta,
+		featuredImage,
+		metadescription,
+		siteLanguage,
+		siteTitle,
+		siteTitleAlt: siteShortTitle,
+		siteUrl,
+		title: pageTitle,
+		url,
+		facebookPage,
+		githubPage,
+		linkedinProfile,
+		telegramUsername,
+		tiktokUsername,
+		twitterUsername
+	};
+	const twitterProps = {
+		article,
+		author,
+		twitterUsername,
+		image: twitterImage,
+		timeToRead
+	};
 </script>
 
-<MetaTags
-  title="Using More of Config"
-  titleTemplate="%s | Svelte Meta Tags"
-  description="This example uses more of the available config options."
-  canonical="https://www.canonical.ie/"
-  openGraph={{
-    url: "https://www.url.ie/a",
-    title: "Open Graph Title",
-    description: "Open Graph Description",
-    images: [
-      {
-        url: "https://www.example.ie/og-image-01.jpg",
-        width: 800,
-        height: 600,
-        alt: "Og Image Alt",
-      },
-      {
-        url: "https://www.example.ie/og-image-02.jpg",
-        width: 900,
-        height: 800,
-        alt: "Og Image Alt Second",
-      },
-      { url: "https://www.example.ie/og-image-03.jpg" },
-      { url: "https://www.example.ie/og-image-04.jpg" },
-    ],
-    site_name: "SiteName",
-  }}
-  twitter={{
-    handle: "@handle",
-    site: "@site",
-    cardType: "summary_large_image",
-    title: "Using More of Config",
-    description: teste,
-    image: "https://www.example.ie/twitter-image.jpg",
-    imageAlt: "Twitter image alt",
-  }}
-  facebook={{
-    appId: "1234567890",
-  }}
-/>
+<svelte:head>
+	<title>{pageTitle}</title>
+	<meta name="description" content={metadescription} />
+	<meta
+		name="robots"
+		content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+	/>
+	<link rel="canonical" href={url} />
+</svelte:head>
+
+<Twitter {...twitterProps} />
+<OpenGraph {...openGraphProps} />
+<SchemaOrg {...schemaOrgProps} />

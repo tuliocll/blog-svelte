@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link id="theme-style" rel="stylesheet" href="/assets/css/theme-5.css" />
+		<link rel="stylesheet" href="/assets/css/global.css" />
+		<link
+			rel="stylesheet"
+			href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/dark.min.css"
+		/>
+		<script
+			async
+			src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"
+		></script>
+
+		<!-- FontAwesome JS-->
+		<script
+			defer
+			src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
+			integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
+			crossorigin="anonymous"
+		></script>
+		%sveltekit.head%
+	</head>
+	<body>
+		<div>%sveltekit.body%</div>
+
+		<!-- Javascript -->
+		<script src="/assets/plugins/jquery-3.3.1.min.js"></script>
+		<script src="/assets/plugins/popper.min.js"></script>
+		<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_19396115d378f83bc157bbe615968e"></script>
+		<script
+			defer
+			data-host="https://cusdis.com"
+			data-app-id=""
+			src="https://cusdis.com/js/cusdis-count.umd.js"
+		></script>
+
+		<script async src="https://cusdis.com/js/cusdis.es.js"></script>
+
+		<script>
+			window.addEventListener('load', () => setTimeout(() => hljs.highlightAll(), 200));
+		</script>
+	</body>
+</html>
