@@ -17,6 +17,8 @@
 	import { onDestroy } from 'svelte';
 	import { navigating } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import CusdisService from '$lib/cusdis';
+	import { onMount } from 'svelte';
 
 	import featuredImageSrc from '$lib/assets/home/logo.jpg';
 	import website from '$lib/config/website';
@@ -120,6 +122,10 @@
 		ogSquareImage,
 		twitterImage
 	};
+
+	onMount(async () => {
+		CusdisService();
+	});
 </script>
 
 <SEO {...seoProps} />
