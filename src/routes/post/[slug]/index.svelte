@@ -13,6 +13,8 @@
 <script lang="ts">
 	import { readingTime } from 'reading-time-estimator';
 	import { formatDistance } from 'date-fns';
+	import { onMount } from 'svelte';
+
 	//@ts-ignore
 	import { ptBR } from 'date-fns/locale/index.js';
 	import SEO from '../../../components/SEO/SEO.svelte';
@@ -127,6 +129,12 @@
 			slug
 		}
 	];
+
+	onMount(() => {
+		document.querySelectorAll('pre code').forEach((el) => {
+			hljs.highlightElement(el);
+		});
+	});
 </script>
 
 <SEO
