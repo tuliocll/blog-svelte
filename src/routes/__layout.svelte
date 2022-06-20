@@ -10,8 +10,6 @@
 </script>
 
 <script>
-	import { GoogleAnalytics } from '@beyonk/svelte-google-analytics';
-
 	import Sidebar from '../components/sidebar/Sidebar.svelte';
 	import Footer from '../components/footer/Footer.svelte';
 
@@ -20,11 +18,7 @@
 	import { blogInfoStore } from '../stores/blogInfo.js';
 
 	blogInfoStore.set(about);
-
-	let GOOGLE_ANALYTICS = import.meta.env ? import.meta.env.VITE_GOOGLE_ANALYTICS : '';
 </script>
-
-<GoogleAnalytics properties={[GOOGLE_ANALYTICS]} />
 
 <nav>
 	<Sidebar />

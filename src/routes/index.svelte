@@ -19,6 +19,7 @@
 	import { goto } from '$app/navigation';
 	import CusdisService from '$lib/cusdis';
 	import { onMount } from 'svelte';
+	import { GoogleAnalytics } from '@beyonk/svelte-google-analytics';
 
 	import featuredImageSrc from '$lib/assets/home/logo.jpg';
 	import website from '$lib/config/website';
@@ -126,9 +127,12 @@
 	onMount(async () => {
 		CusdisService();
 	});
+
+	let GOOGLE_ANALYTICS = import.meta.env ? import.meta.env.VITE_GOOGLE_ANALYTICS : '';
 </script>
 
 <SEO {...seoProps} />
+<GoogleAnalytics properties={[GOOGLE_ANALYTICS]} />
 
 <section class="blog-list px-3 py-5 p-md-5">
 	<div class="container">

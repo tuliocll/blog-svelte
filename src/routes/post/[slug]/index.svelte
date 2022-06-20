@@ -14,6 +14,7 @@
 	import { readingTime } from 'reading-time-estimator';
 	import { formatDistance } from 'date-fns';
 	import { onMount } from 'svelte';
+	import { GoogleAnalytics } from '@beyonk/svelte-google-analytics';
 
 	//@ts-ignore
 	import { ptBR } from 'date-fns/locale/index.js';
@@ -135,6 +136,8 @@
 			hljs.highlightElement(el);
 		});
 	});
+
+	let GOOGLE_ANALYTICS = import.meta.env ? import.meta.env.VITE_GOOGLE_ANALYTICS : '';
 </script>
 
 <SEO
@@ -151,6 +154,8 @@
 	ogSquareImage={ogSquareImageObject}
 	twitterImage={twitterImageObject}
 />
+
+<GoogleAnalytics properties={[GOOGLE_ANALYTICS]} />
 
 <article class="blog-post px-3 py-5 p-md-5">
 	{#if showModalImage}

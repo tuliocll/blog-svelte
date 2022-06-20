@@ -53,7 +53,8 @@
 				/>
 
 				<div class="bio mb-3">
-					{blogInfo.aboutMe}<br /><a href="/about">Veja mais sobre mim.</a>
+					{blogInfo.aboutMe}<br />
+					<!-- <a href="/about">Veja mais sobre mim.</a> -->
 				</div>
 
 				<ul class="social-list list-inline py-3 mx-auto">
