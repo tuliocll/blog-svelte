@@ -55,6 +55,7 @@
 					};
 				};
 			};
+			SEO: string;
 			publishedAt: string;
 		};
 	};
@@ -154,7 +155,7 @@
 	title={article?.attributes?.title}
 	datePublished={article?.attributes?.publishedAt}
 	lastUpdated={article?.attributes?.publishedAt}
-	metadescription={article?.attributes?.content.slice(0, 150)}
+	metadescription={article?.attributes?.SEO || article?.attributes?.content.slice(0, 150)}
 	timeToRead={readTime.minutes}
 	featuredImage={featuredImageObject}
 	ogImage={ogImageObject}
