@@ -4,6 +4,13 @@
 		const { slug } = params;
 		const [article] = await Promise.all([fetch(`/post/${slug}.json`).then((r: any) => r.json())]);
 
+		if (!article.data[0]) {
+			return {
+				status: 302,
+				redirect: '/'
+			};
+		}
+
 		return {
 			props: { article: article.data[0], slug }
 		};
@@ -144,10 +151,10 @@
 	article
 	{breadcrumbs}
 	{slug}
-	title={article.attributes?.title}
-	datePublished={article.attributes?.publishedAt}
-	lastUpdated={article.attributes?.publishedAt}
-	metadescription={article.attributes?.content.slice(0, 150)}
+	title={article?.attributes?.title}
+	datePublished={article?.attributes?.publishedAt}
+	lastUpdated={article?.attributes?.publishedAt}
+	metadescription={article?.attributes?.content.slice(0, 150)}
 	timeToRead={readTime.minutes}
 	featuredImage={featuredImageObject}
 	ogImage={ogImageObject}
@@ -186,15 +193,15 @@
 					><img
 						class="img-fluid"
 						src={thumbnailUrl}
-						alt="image {article.attributes?.title || ''}"
+						alt="image {article?.attributes?.title || ''}"
 					/></a
 				>
 				<figcaption class="mt-2 text-center image-caption">
-					<Markdown content={article.attributes?.coverLegend} />
+					<Markdown content={article?.attributes?.coverLegend} />
 				</figcaption>
 			</figure>
 			<div id="content-body">
-				<Markdown content={article.attributes?.content} />
+				<Markdown content={article?.attributes?.content} />
 			</div>
 		</div>
 
