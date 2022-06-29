@@ -17,7 +17,7 @@ Para acessar a versão com Svelte puro, mude para a branch `svelte`.
 - Tempo de leitura do post.
 - Google Analytics.
 - Image Lazy load e placeholder.
-- Svelte Query para fetch e cache das request.
+- Pagina de erro customizada.
 
 ### Roadmap
 
