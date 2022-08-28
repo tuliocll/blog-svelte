@@ -14,6 +14,7 @@
 	import { readingTime } from 'reading-time-estimator';
 	import { formatDistance } from 'date-fns';
 	import { onMount } from 'svelte';
+
 	import { GoogleAnalytics } from '@beyonk/svelte-google-analytics';
 
 	//@ts-ignore

@@ -1,28 +1,28 @@
-import type { ReactionType } from '$lib/types/reactions.types';
+import config from '$lib/config/website';
 
-async function reactionClick(reactionName: string) {
-	if (!getReactionClick(reactionName)) {
-		localStorage.getItem();
+/**
+ * @description Register new reaction to the post.
+ */
+async function setReaction(reactionId: number, postTitle: string) {
+	if (getReaction(reactionId, postTitle)) {
+		// I need thik if i will enable this...
+		// localStorage.removeItem(`${config.siteTitle}@reactions-${reactionId}-${postTitle}`);
+		return false;
 	}
+
+	localStorage.setItem(`${config.siteTitle}@reactions-${reactionId}-${postTitle}`, 'true');
 }
 
 /**
  * @description Check if user already reacted on this post.
  */
-function getReactionClick(reactionName: string) {
+function getReaction(reactionId: number, postTitle: string) {
 	try {
-		// TODO: Coloca titulo do post dentro da chave
-		const getReactions = localStorage.getItem('tuliocalil@reactions');
+		const getReactions = localStorage.getItem(
+			`${config.siteTitle}@reactions-${reactionId}-${postTitle}`
+		);
 
-		if (!getReactions) {
-			return false;
-		}
-
-		const reactions: ReactionType[] = JSON.parse(getReactions);
-
-		const reaction = reactions.find((reaction) => reaction.reactionName === reactionName);
-
-		if (!reaction) {
+		if (!getReactions || getReactions === 'false') {
 			return false;
 		}
 
@@ -32,4 +32,4 @@ function getReactionClick(reactionName: string) {
 	}
 }
 
-export { reactionClick, getReactionClick };
+export { setReaction, getReaction };

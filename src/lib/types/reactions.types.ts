@@ -1,5 +1,5 @@
 type ReactionType = {
-	id?: number;
+	id: number;
 	reactionName: string;
 	count?: number;
 	reacted?: boolean;

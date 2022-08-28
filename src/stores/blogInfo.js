@@ -1,11 +1,11 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
 export const blogInfoStore = writable({
-  blogName: "",
-  aboutMe: "",
-  profilePicture: "",
-  pages: [],
-  socialLinks: [],
-  blogSubtitle: "",
-  newsletterText: "",
+	blogName: '',
+	aboutMe: '',
+	profilePicture: '',
+	pages: [],
+	socialLinks: [],
+	blogSubtitle: '',
+	newsletterText: ''
 });
