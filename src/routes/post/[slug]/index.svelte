@@ -14,6 +14,7 @@
 	import { readingTime } from 'reading-time-estimator';
 	import { formatDistance } from 'date-fns';
 	import { onMount } from 'svelte';
+	import PostReactions from '../../../components/post-reactions/index.svelte';
 
 	import { GoogleAnalytics } from '@beyonk/svelte-google-analytics';
 
@@ -91,6 +92,48 @@
 		}
 	}
 
+	let reactions: ReactionType[] = [
+		{
+			id: 1,
+			reactionName: '🧡',
+			count: 2
+		},
+		{
+			id: 2,
+			reactionName: '😍',
+			count: 2
+		},
+		{
+			id: 3,
+			reactionName: '🤘',
+			count: 2
+		},
+		{
+			id: 4,
+			reactionName: '👍',
+			count: 22
+		},
+		{
+			id: 5,
+			reactionName: '🚀',
+			count: 222
+		},
+		{
+			id: 6,
+			reactionName: '🍺',
+			count: 222
+		},
+		{
+			id: 7,
+			reactionName: '🎉',
+			count: 222
+		},
+		{
+			id: 8,
+			reactionName: '🏆',
+			count: 222
+		}
+	];
 	const { small, thumbnail, medium } = article.attributes.cover.data.attributes.formats;
 
 	const smallestImageSize = thumbnail?.url || small?.url || medium?.url || thumb;
@@ -131,6 +174,15 @@
 			slug
 		}
 	];
+
+	function handleReaction({ detail }: any) {
+		// reactions = [
+		// 	...reactions.map((reaction) => ({
+		// 		...reaction,
+		// 		count: reaction.id === detail ? reaction.count + 1 : reaction.count
+		// 	}))
+		// ];
+	}
 
 	onMount(() => {
 		document.querySelectorAll('pre code').forEach((el) => {
@@ -181,22 +233,25 @@
 			</div>
 		</header>
 
-		<div class="blog-post-body">
-			<figure class="blog-banner">
-				<a href="#"
-					><img
-						class="img-fluid"
-						src={thumbnailUrl}
-						alt="image {article.attributes?.title || ''}"
-					/></a
-				>
-				<figcaption class="mt-2 text-center image-caption">
-					<Markdown content={article.attributes?.coverLegend} />
-				</figcaption>
-			</figure>
-			<div id="content-body">
-				<Markdown content={article.attributes?.content} />
+		<div>
+			<div class="blog-post-body">
+				<figure class="blog-banner">
+					<a href="#"
+						><img
+							class="img-fluid"
+							src={thumbnailUrl}
+							alt="image {article.attributes?.title || ''}"
+						/></a
+					>
+					<figcaption class="mt-2 text-center image-caption">
+						<Markdown content={article.attributes?.coverLegend} />
+					</figcaption>
+				</figure>
+				<div id="content-body">
+					<Markdown content={article.attributes?.content} />
+				</div>
 			</div>
+			<PostReactions {reactions} on:reacted={handleReaction} />
 		</div>
 
 		<div class="mt-5">

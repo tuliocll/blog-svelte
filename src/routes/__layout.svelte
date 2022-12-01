@@ -13,52 +13,8 @@
 	import type { ReactionType } from '$lib/types/reactions.types';
 	import Sidebar from '../components/sidebar/Sidebar.svelte';
 	import Footer from '../components/footer/Footer.svelte';
-	import PostReactions from '../components/post-reactions/index.svelte';
 
 	export let about;
-
-	const reactions: ReactionType[] = [
-		{
-			id: 1,
-			reactionName: '🧡',
-			count: 2
-		},
-		{
-			id: 2,
-			reactionName: '😍',
-			count: 2
-		},
-		{
-			id: 3,
-			reactionName: '🤘',
-			count: 2
-		},
-		{
-			id: 4,
-			reactionName: '👍',
-			count: 22
-		},
-		{
-			id: 5,
-			reactionName: '🚀',
-			count: 222
-		},
-		{
-			id: 6,
-			reactionName: '🍺',
-			count: 222
-		},
-		{
-			id: 7,
-			reactionName: '🎉',
-			count: 222
-		},
-		{
-			id: 8,
-			reactionName: '🏆',
-			count: 222
-		}
-	];
 
 	import { blogInfoStore } from '../stores/blogInfo.js';
 
@@ -71,10 +27,6 @@
 
 <div class="main-wrapper">
 	<slot />
-</div>
-
-<div class="sidebar">
-	<PostReactions {reactions} />
 </div>
 
 <Footer />

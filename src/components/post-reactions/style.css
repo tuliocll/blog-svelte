@@ -2,6 +2,10 @@
 	display: grid;
 	grid-template-columns: 100px 100px;
 	gap: 10px;
+	position: absolute;
+	top: 45vh;
+	right: 2vw;
+	justify-content: center;
 }
 
 .reaction {
@@ -21,4 +25,30 @@
 
 .reacted {
 	background-color: rgb(245, 216, 88) !important;
+}
+
+@media (min-width: 1600px) {
+	.reactions {
+		top: 15vh;
+		right: 23vw;
+	}
+}
+
+@media (max-width: 1415px) {
+	.reactions {
+		position: inherit;
+		grid-template-columns: 100px 100px 100px 100px;
+	}
+}
+
+@media (max-width: 425px) {
+	.reactions {
+		grid-template-columns: 90px 90px 90px;
+	}
+}
+
+@media (max-width: 320px) {
+	.reactions {
+		grid-template-columns: 120px 120px;
+	}
 }

@@ -5,7 +5,8 @@ import config from '$lib/config/website';
  */
 async function setReaction(reactionId: number, postTitle: string) {
 	if (getReaction(reactionId, postTitle)) {
-		// I need thik if i will enable this...
+		// If want to create a toggle (undo reaction)
+		// enabled the `removeItem` line.
 		// localStorage.removeItem(`${config.siteTitle}@reactions-${reactionId}-${postTitle}`);
 		return false;
 	}
