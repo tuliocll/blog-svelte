@@ -1,7 +1,9 @@
 <script context="module">
 	export async function load({ url, fetch }) {
 		const [{ articles, pagination }] = await Promise.all([
-			fetch(`/posts.json${url.search}`, { credentials: 'include' }).then((r) => r.json())
+			fetch(`/posts.json${url.search}`, { credentials: 'include' }).then((response) =>
+				response.json()
+			)
 		]);
 
 		return {
@@ -14,7 +16,6 @@
 </script>
 
 <script lang="ts">
-	import { onDestroy } from 'svelte';
 	import { navigating } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import CusdisService from '$lib/cusdis';
@@ -29,14 +30,11 @@
 	import Pagination from '../components/pagination/Pagination.svelte';
 	import PostShimmer from '../components/post-shimmer/PostShimmer.svelte';
 
-	import { blogInfoStore } from '../stores/blogInfo.js';
-
-	export let articles;
+	export let articles: PostType[];
 	export let pagination;
 
-	let blogInfo;
 	let currentPage = 1;
-	let totalPages = pagination.pageCount;
+	let totalPages = pagination?.pages;
 
 	let destination = '';
 
@@ -67,12 +65,6 @@
 		currentPage -= 1;
 		goto(`/?page=${currentPage}`);
 	}
-
-	const unsubscribe = blogInfoStore.subscribe((value) => {
-		blogInfo = value;
-	});
-
-	onDestroy(unsubscribe);
 
 	const { author, siteUrl, siteDescription } = website;
 	let title = 'Home';
@@ -145,7 +137,7 @@
 			<PostShimmer />
 		{:else}
 			{#each articles as post}
-				<Post {...post.attributes} id={post.id} />
+				<Post {...post} />
 			{/each}
 		{/if}
 	</div>

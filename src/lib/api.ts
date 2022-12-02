@@ -1,7 +1,26 @@
 const base = import.meta.env ? import.meta.env.VITE_API_URL : '';
 
-async function send({ method, path, data, token }) {
-	const opts = { method, headers: {} };
+type methods = 'POST' | 'DELETE' | 'GET' | 'PATCH' | 'PUT';
+
+async function send({
+	method,
+	path,
+	data,
+	token
+}: {
+	method: methods;
+	path: string;
+	data?: any;
+	token: string;
+}) {
+	const opts = {
+		method,
+		headers: {
+			'Content-Type': '',
+			Authorization: ''
+		},
+		body: ''
+	};
 
 	if (data) {
 		opts.headers['Content-Type'] = 'application/json';
@@ -23,18 +42,18 @@ async function send({ method, path, data, token }) {
 		});
 }
 
-export function get(path, token) {
+export function get(path: string, token: string) {
 	return send({ method: 'GET', path, token });
 }
 
-export function del(path, token) {
+export function del(path: string, token: string) {
 	return send({ method: 'DELETE', path, token });
 }
 
-export function post(path, data, token) {
+export function post(path: string, data: any, token: string) {
 	return send({ method: 'POST', path, data, token });
 }
 
-export function put(path, data, token) {
+export function put(path: string, data: any, token: string) {
 	return send({ method: 'PUT', path, data, token });
 }

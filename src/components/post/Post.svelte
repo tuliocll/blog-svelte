@@ -4,39 +4,27 @@
 
 	//@ts-ignore
 	import { ptBR } from 'date-fns/locale/index.js';
-	import { marked } from 'marked';
 	import { LazyImage } from 'svelte-lazy-image';
 
-	export let title;
-	export let slug;
-	export let publishedAt;
+	export let title: string;
+	export let slug: string;
+	export let published_at: string;
 
-	export let content = '';
-	export let cover;
+	export let html = '';
+	export let feature_image: string;
 
-	let API_URL = import.meta.env ? import.meta.env.VITE_API_URL : '';
+	let readTime = readingTime(html, 100);
 
-	$: readTime = readingTime(content, 100);
-
-	$: thumb = cover.data.attributes.formats.thumbnail.url as string;
-	const api_url = API_URL;
-	$: thumbnailUrl = thumb.startsWith('https') ? thumb : `${api_url}${thumb}`;
-
-	$: formatedDate = formatDistance(new Date(publishedAt), new Date(), {
+	$: formatedDate = formatDistance(new Date(published_at), new Date(), {
 		addSuffix: true,
 		locale: ptBR
 	});
 
-	$: html = marked.parse(content);
-	$: contentParsed = removeTags(html.replace('&nbsp;', ' '));
+	$: contentParsed = removeHTMLTags(html).replace('&quot;', ' ');
 
-	function removeTags(str) {
-		if (str === null || str === '') return false;
-		else str = str.toString();
+	function removeHTMLTags(str: string) {
+		if (str === null || str === '') return '';
 
-		// Regular expression to identify HTML tags in
-		// the input string. Replacing the identified
-		// HTML tag with a null string.
 		return str.replace(/(<([^>]+)>)/gi, '');
 	}
 </script>
@@ -45,7 +33,7 @@
 	<div class="media">
 		<LazyImage
 			class="mr-3 post-thumb d-none d-md-flex"
-			src={thumbnailUrl}
+			src={feature_image}
 			placeholder="https://via.placeholder.com/250?text=TulioCalil"
 			alt="image {title}"
 		/>
