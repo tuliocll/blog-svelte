@@ -7,7 +7,7 @@ export async function get({ url: { searchParams } }: { url: { searchParams: URLS
 		const data = await ghost.posts.browse({
 			limit: 6,
 			page,
-			order: ['published_at.asc'],
+			order: ['published_at ASC'],
 			include: ['tags', 'authors']
 		});
 
