@@ -4,7 +4,7 @@
 		const [about] = await Promise.all([fetch(`/about.json`).then((r: any) => r.json())]);
 
 		return {
-			props: { about: about.data.attributes }
+			props: { about: about }
 		};
 	}
 </script>

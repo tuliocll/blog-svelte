@@ -4,6 +4,7 @@ const facebookAuthorPageName = import.meta.env ? import.meta.env.VITE_FACEBOOK_A
 const website = {
 	author: 'Tulio Calil',
 	ogLanguage: 'pt_BR',
+	entity: "",
 	siteLanguage: 'pt-BR',
 	siteTitle: 'Tulio Calil',
 	siteShortTitle: 'Tulio Calil Blog',

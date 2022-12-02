@@ -1,7 +1,7 @@
-<script>
-  import SvelteMarkdown from "svelte-markdown";
-  import ImageComponent from "./renderers/img.svelte";
-  export let content;
+<script lang="ts">
+	import SvelteMarkdown from 'svelte-markdown';
+	import ImageComponent from './renderers/img.svelte';
+	export let content: string;
 </script>
 
-<SvelteMarkdown source={content ?? ""} renderers={{ image: ImageComponent }} />
+<SvelteMarkdown source={content ?? ''} renderers={{ image: ImageComponent }} />

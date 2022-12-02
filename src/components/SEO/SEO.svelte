@@ -1,17 +1,12 @@
 <script lang="ts">
-	import defaultFeaturedImage from '$lib/assets/home/home.jpg';
-	import defaultOgImage from '$lib/assets/home/home-open-graph.jpg';
-	import defaultOgSquareImage from '$lib/assets/home/home-open-graph-square.jpg';
-	import defaultTwitterImage from '$lib/assets/home/home-twitter.jpg';
-
 	import OpenGraph from './OpenGraph.svelte';
 	import SchemaOrg from './SchemaOrg.svelte';
 	import Twitter from './Twitter.svelte';
-
 	import website from '$lib/config/website';
 
 	import { onDestroy } from 'svelte';
-	import { blogInfoStore } from '../../stores/blogInfo.js';
+	import { blogInfoStore } from '../../stores/blogInfo';
+	import type { AboutType } from '$lib/types/about';
 
 	const {
 		author,
@@ -31,47 +26,41 @@
 	} = website;
 
 	export let article = false;
-	export let breadcrumbs = [];
-	export let entityMeta = null;
+	export let breadcrumbs: any[] = [];
+	export let entityMeta = '';
 	export let lastUpdated;
 	export let datePublished;
-	export let metadescription;
+	export let metadescription: string;
 	export let slug;
 	export let timeToRead = 0;
 	export let title;
 
-	const defaultAlt =
-		'picture of a person with long, curly hair, wearing a red had taking a picture with an analogue camera';
-
-	let blogInfo;
+	let blogInfo = <AboutType>{};
 
 	const unsubscribe = blogInfoStore.subscribe((value) => {
 		blogInfo = value;
-		blogInfo.pages = value.pages.map((page) => page);
-		blogInfo.socialLinks = value.socialLinks.map((social) => social);
 	});
 
 	onDestroy(unsubscribe);
 
-	// imported props with fallback defaults
 	export let featuredImage = {
-		url: defaultFeaturedImage,
-		alt: defaultAlt,
+		url: blogInfo.og_image,
+		alt: blogInfo.title,
 		width: 672,
 		height: 448,
 		caption: 'Home page'
 	};
 	export let ogImage = {
-		url: defaultOgImage,
-		alt: defaultAlt
+		url: blogInfo.og_image,
+		alt: blogInfo.og_description
 	};
 	export let ogSquareImage = {
-		url: defaultOgSquareImage,
-		alt: defaultAlt
+		url: blogInfo.og_image,
+		alt: blogInfo.og_description
 	};
 	export let twitterImage = {
-		url: defaultTwitterImage,
-		alt: defaultAlt
+		url: blogInfo.twitter_image,
+		alt: blogInfo.twitter_description
 	};
 
 	const url = `${siteUrl}/post/${slug}`;
