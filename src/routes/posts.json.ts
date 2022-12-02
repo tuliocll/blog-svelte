@@ -5,9 +5,9 @@ export async function get({ url: { searchParams } }: { url: { searchParams: URLS
 		const pageParam = searchParams.get('page');
 		const page = pageParam ? +pageParam : 1;
 		const data = await ghost.posts.browse({
-			limit: 3,
+			limit: 6,
 			page,
-			order: ['published_at.desc'],
+			order: ['published_at.asc'],
 			include: ['tags', 'authors']
 		});
 
