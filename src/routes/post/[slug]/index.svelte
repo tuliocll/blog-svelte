@@ -31,6 +31,7 @@
 	import ModalImage from '../../../components/modal-image/ModalImage.svelte';
 	import Markdown from '../../../components/markdown/Markdown.svelte';
 	import CommentBox from '../../../components/comment-box/CommentBox.svelte';
+	import { browser } from '$app/env';
 
 	export let article: PostType;
 	export let slug: string;
@@ -101,10 +102,14 @@
 	];
 
 	onMount(() => {
-		document.querySelectorAll('pre code').forEach((el) => {
+		if (browser) {
+			document.querySelectorAll('pre code').forEach((el) => {
+				//@ts-ignore
+				hljs.highlightElement(el);
+			});
 			//@ts-ignore
-			hljs.highlightElement(el);
-		});
+			initYouTubeVideos();
+		}
 	});
 
 	let GOOGLE_ANALYTICS = import.meta.env ? import.meta.env.VITE_GOOGLE_ANALYTICS : '';
