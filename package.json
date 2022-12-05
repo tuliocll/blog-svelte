@@ -33,6 +33,7 @@
 	"dependencies": {
 		"@beyonk/svelte-google-analytics": "^2.6.4",
 		"@tryghost/content-api": "^1.11.5",
+		"@tryghost/string": "^0.2.2",
 		"date-fns": "^2.28.0",
 		"dompurify": "^2.3.8",
 		"firebase": "^9.14.0",

@@ -1,9 +1,10 @@
 <script context="module" lang="ts">
 	import ghost from '$lib/ghost';
+	import { slugify } from '@tryghost/string';
 	export async function load({ params }: { params: any }) {
 		try {
 			const { slug } = params;
-			const data = await ghost.pages.read({ slug });
+			const data = await ghost.pages.read({ slug: slugify(slug) });
 
 			return {
 				props: {
@@ -11,7 +12,7 @@
 				}
 			};
 		} catch (err) {
-			console.error('Erro');
+			console.error('Erro', err);
 			return {
 				status: 302,
 				redirect: '/'

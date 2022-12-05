@@ -631,6 +631,13 @@
   dependencies:
     axios "^0.27.0"
 
+"@tryghost/string@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@tryghost/string/-/string-0.2.2.tgz#e5792c340bb5d434574ce9e0aa4d06c89a928373"
+  integrity sha512-N9s7fNlb8o+MZqVzYHyRfnsIesXspc2crZO3mWcn3IKx4+c/zuBnGb+16xXtEsI4IABaPpu93IeQWnlSKO1+og==
+  dependencies:
+    unidecode "^0.1.8"
+
 "@types/json-schema@^7.0.9":
   version "7.0.11"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
@@ -2759,6 +2766,11 @@ typescript@*, typescript@^4.7.2:
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.3.tgz#8364b502d5257b540f9de4c40be84c98e23a129d"
   integrity sha512-WOkT3XYvrpXx4vMMqlD+8R8R37fZkjyLGlxavMc4iB8lrl8L0DeTcHbYgw/v0N/z9wAFsgBhcsF0ruoySS22mA==
+
+unidecode@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/unidecode/-/unidecode-0.1.8.tgz#efbb301538bc45246a9ac8c559d72f015305053e"
+  integrity sha512-SdoZNxCWpN2tXTCrGkPF/0rL2HEq+i2gwRG1ReBvx8/0yTzC3enHfugOf8A9JBShVwwrRIkLX0YcDUGbzjbVCA==
 
 uri-js@^4.2.2:
   version "4.4.1"
