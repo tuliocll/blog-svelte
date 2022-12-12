@@ -23,6 +23,19 @@
 	import { formatDistance } from 'date-fns';
 	import { onMount } from 'svelte';
 	import { GoogleAnalytics } from '@beyonk/svelte-google-analytics';
+	import {
+		collection,
+		addDoc,
+		setDoc,
+		doc,
+		arrayUnion,
+		updateDoc,
+		getDocFromCache,
+		getDocFromServer,
+		increment
+	} from 'firebase/firestore';
+
+	import PostReactions from '../../../components/post-reactions/index.svelte';
 
 	//@ts-ignore
 	import { ptBR } from 'date-fns/locale/index.js';
@@ -32,6 +45,10 @@
 	import Markdown from '../../../components/markdown/Markdown.svelte';
 	import CommentBox from '../../../components/comment-box/CommentBox.svelte';
 	import { browser } from '$app/env';
+	import type { ReactionType } from '$lib/types/reactions.types';
+	import { db } from '$lib/firebase';
+	import { getDocument, insertNewData } from '$lib/services/firestore';
+	import { getReaction } from '$lib/services/reactions';
 
 	export let article: PostType;
 	export let slug: string;
@@ -68,6 +85,49 @@
 		}
 	}
 
+	let reactions: ReactionType[] = [
+		{
+			id: 1,
+			reactionName: '🧡',
+			count: 0
+		},
+		{
+			id: 2,
+			reactionName: '😍',
+			count: 0
+		},
+		{
+			id: 3,
+			reactionName: '🤘',
+			count: 0
+		},
+		{
+			id: 4,
+			reactionName: '👍',
+			count: 0
+		},
+		{
+			id: 5,
+			reactionName: '🚀',
+			count: 0
+		},
+		{
+			id: 6,
+			reactionName: '🍺',
+			count: 0
+		},
+		{
+			id: 7,
+			reactionName: '🎉',
+			count: 0
+		},
+		{
+			id: 8,
+			reactionName: '🏆',
+			count: 0
+		}
+	];
+
 	const featuredImageObject = {
 		url: article.feature_image,
 		alt: article.feature_image_alt,
@@ -101,6 +161,50 @@
 		}
 	];
 
+	async function handleReaction({ detail }: any) {
+		const { id, path } = detail;
+
+		//send reaction to firestore
+		await insertNewData(
+			db(),
+			'post-reactions',
+			{
+				[id]: increment(1)
+			},
+			path.replace(/\//gm, '-')
+		);
+
+		reactions = reactions.map((reaction) => {
+			if (reaction.id === id) {
+				return {
+					...reaction,
+					count: reaction?.count + 1,
+					reacted: getReaction(reaction.id, path) ? true : false
+				};
+			}
+
+			return reaction;
+		});
+	}
+
+	async function getServerReactions() {
+		const data = await getDocument(db(), 'post-reactions', slug);
+
+		const updateReactions = reactions.map((reaction) => {
+			if (data && data[reaction.id]) {
+				return {
+					...reaction,
+					reacted: getReaction(reaction.id, slug) ? true : false,
+					count: data[reaction.id]
+				};
+			}
+
+			return reaction;
+		});
+
+		reactions = [...updateReactions];
+	}
+
 	onMount(() => {
 		if (browser) {
 			document.querySelectorAll('pre code').forEach((el) => {
@@ -109,6 +213,7 @@
 			});
 			//@ts-ignore
 			initYouTubeVideos();
+			getServerReactions();
 		}
 	});
 
@@ -167,6 +272,7 @@
 			<div id="content-body">
 				<Markdown content={article.html} />
 			</div>
+			<PostReactions {reactions} on:reacted={handleReaction} />
 		</div>
 
 		<div class="mt-5">

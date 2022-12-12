@@ -5,6 +5,10 @@ body {
 	height: 100%;
 }
 
+.container {
+	margin-left: 2vw;
+}
+
 .shine-container {
 	display: flex;
 	flex-direction: column;
@@ -218,6 +222,12 @@ photo {
 .profile-image {
 	min-width: 150px;
 	min-height: 150px;
+}
+
+@media (max-width: 1415px) {
+	.container {
+		margin-left: auto;
+	}
 }
 
 @media only screen and (max-width: 700px) {

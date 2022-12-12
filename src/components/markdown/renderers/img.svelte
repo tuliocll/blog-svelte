@@ -29,7 +29,7 @@
 
 <LazyImage
 	src={url}
-	placeholder="https://via.placeholder.com/250?text=TulioCalil"
+	placeholder="https://via.placeholder.com/250?text=Carregando..."
 	alt={text}
 	{title}
 />

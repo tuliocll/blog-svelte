@@ -9,21 +9,23 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
+	import type { ReactionType } from '$lib/types/reactions.types';
 	import Sidebar from '../components/sidebar/Sidebar.svelte';
 	import Footer from '../components/footer/Footer.svelte';
-	import initializeFirebase from '$lib/firebase';
+	import { analytics, perf } from '$lib/firebase';
 
 	export let about;
 
 	import { blogInfoStore } from '../stores/blogInfo.js';
 	import { browser } from '$app/env';
 
-	blogInfoStore.set(about);
-
 	if (browser) {
-		initializeFirebase();
+		analytics();
+		perf();
 	}
+
+	blogInfoStore.set(about);
 </script>
 
 <nav>

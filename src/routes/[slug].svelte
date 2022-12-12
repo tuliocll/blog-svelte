@@ -12,7 +12,6 @@
 				}
 			};
 		} catch (err) {
-			console.error('Erro', err);
 			return {
 				status: 302,
 				redirect: '/'
