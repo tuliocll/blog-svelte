@@ -3,7 +3,7 @@
 	grid-template-columns: 100px 100px;
 	gap: 10px;
 	position: absolute;
-	top: 45vh;
+	top: 20vh;
 	right: 2vw;
 	justify-content: center;
 }
