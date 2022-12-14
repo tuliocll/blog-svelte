@@ -30,14 +30,9 @@
 	import Pagination from '../components/pagination/Pagination.svelte';
 	import PostShimmer from '../components/post-shimmer/PostShimmer.svelte';
 	import CarrouselBanner from '../components/carrousel-banner/CarrouselBanner.svelte';
-	import { remoteConfig } from '$lib/firebase';
-	import { browser } from '$app/env';
-	import { getBoolean } from 'firebase/remote-config';
 
 	export let articles: PostType[];
 	export let pagination;
-
-	let featureToggleBanner = false;
 
 	let currentPage = 1;
 	let totalPages = pagination?.pages;
@@ -124,10 +119,6 @@
 
 	onMount(async () => {
 		CusdisService();
-		if (browser) {
-			const bannerConfig = await getBoolean(remoteConfig(), 'carrousel_banner');
-			featureToggleBanner = bannerConfig;
-		}
 	});
 
 	let GOOGLE_ANALYTICS = import.meta.env ? import.meta.env.VITE_GOOGLE_ANALYTICS : '';
@@ -149,7 +140,7 @@
 			{#each articles as post, index}
 				<Post {...post} />
 
-				{#if featureToggleBanner && index === articles.length / 2 - 1}
+				{#if index === articles.length / 2 - 1}
 					<CarrouselBanner />
 				{/if}
 			{/each}

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/env';
-	import { analytics, db } from '$lib/firebase';
+	import { analytics, db, remoteConfig } from '$lib/firebase';
 	import { getDocument } from '$lib/services/firestore';
 	import { logEvent } from 'firebase/analytics';
+	import { getBoolean } from 'firebase/remote-config';
 	import { onMount } from 'svelte';
 	import Carousel from 'svelte-carousel';
 	import CarrouselItem from './CarrouselItem.svelte';
@@ -20,6 +21,7 @@
 	};
 
 	let products: Array<CarrouselItem> = [];
+	let featureToggleBanner = false;
 
 	async function getPromoItens() {
 		const data = await getDocument(db(), 'promotions', 'products');
@@ -35,6 +37,11 @@
 		}
 	}
 
+	async function getBanners() {
+		const bannerConfig = await getBoolean(remoteConfig(), 'carrousel_banner');
+		featureToggleBanner = bannerConfig;
+	}
+
 	onMount(() => {
 		if (browser) {
 			getPromoItens();
@@ -47,12 +54,13 @@
 			if (isMobileSmall) {
 				carrouselSize = 1;
 			}
+			getBanners();
 		}
 	});
 </script>
 
 <section id="promo" class="">
-	{#if browser && products.length > 0}
+	{#if browser && products.length > 0 && featureToggleBanner}
 		<Carousel particlesToShow={carrouselSize} on:pageChange={changePageEvent}>
 			{#each products as product}
 				<CarrouselItem
