@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getPerformance } from 'firebase/performance';
 import { getFirestore } from 'firebase/firestore';
+import { getRemoteConfig } from 'firebase/remote-config';
 import { browser } from '$app/env';
 
 const firebaseConfig = {
@@ -32,5 +33,10 @@ export const perf = () => {
 export const db = () => {
 	if (app) {
 		return getFirestore(app());
+	}
+};
+export const remoteConfig = () => {
+	if (app) {
+		return getRemoteConfig(app());
 	}
 };
