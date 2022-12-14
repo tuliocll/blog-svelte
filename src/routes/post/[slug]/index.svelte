@@ -23,17 +23,7 @@
 	import { formatDistance } from 'date-fns';
 	import { onMount } from 'svelte';
 	import { GoogleAnalytics } from '@beyonk/svelte-google-analytics';
-	import {
-		collection,
-		addDoc,
-		setDoc,
-		doc,
-		arrayUnion,
-		updateDoc,
-		getDocFromCache,
-		getDocFromServer,
-		increment
-	} from 'firebase/firestore';
+	import { increment } from 'firebase/firestore';
 
 	import PostReactions from '../../../components/post-reactions/index.svelte';
 

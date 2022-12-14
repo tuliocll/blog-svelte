@@ -12,6 +12,9 @@ const config = {
 		vite: {
 			ssr: {
 				noExternal: ['reading-time-estimator']
+			},
+			optimizeDeps: {
+				include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep']
 			}
 		}
 	}

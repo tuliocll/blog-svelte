@@ -29,6 +29,7 @@
 	import SEO from '../components/SEO/SEO.svelte';
 	import Pagination from '../components/pagination/Pagination.svelte';
 	import PostShimmer from '../components/post-shimmer/PostShimmer.svelte';
+	import CarrouselBanner from '../components/carrousel-banner/CarrouselBanner.svelte';
 
 	export let articles: PostType[];
 	export let pagination;
@@ -136,8 +137,12 @@
 			<PostShimmer />
 			<PostShimmer />
 		{:else}
-			{#each articles as post}
+			{#each articles as post, index}
 				<Post {...post} />
+
+				{#if index === articles.length / 2 - 1}
+					<CarrouselBanner />
+				{/if}
 			{/each}
 		{/if}
 	</div>
