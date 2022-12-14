@@ -265,10 +265,6 @@
 			<PostReactions {reactions} on:reacted={handleReaction} />
 		</div>
 
-		<div class="mt-5">
-			<div data-lyket-type="clap" data-lyket-namespace="blog" data-lyket-id={slug} />
-		</div>
-
 		<CommentBox {slug} title={article.title || ''} />
 	</div>
 </article>

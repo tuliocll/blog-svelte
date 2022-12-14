@@ -12,12 +12,15 @@ Para acessar a versão com Svelte puro, mude para a branch `svelte`.
 - Sveltekit!
 - Listagem de postagens com paginação (isso é uma feature ?).
 - Layout responsivo (isso é uma feature ?).
-- Botão de clap(like).
 - Comentarios e contador de comentarios nas postagens.
 - Tempo de leitura do post.
 - Google Analytics.
+- Google Performance Monitor.
 - Image Lazy load e placeholder.
 - Pagina de erro customizada.
+- Reações nas postagens.
+- SEO otimizado
+- Preview ao compartilhar links
 
 ### Roadmap
 
@@ -28,7 +31,7 @@ Para acessar a versão com Svelte puro, mude para a branch `svelte`.
 - [ ] Adicionar botão de compartilhar.
 - [x] Implementar minutos de leitura nas postagens.
 - [x] Usar/refatorar writable stores para infos basicas do blog (nome, descricao, etc).
-- [ ] Refatorar para typescript
+- [x] Refatorar para typescript
 - [x] Melhorar acessibilidade
 - [x] Melhorar SEO
 - [x] Criar feature toggle
@@ -54,9 +57,7 @@ Configure o .env.
 cp .env.example .env
 ```
 
-Crie uma conta no [Cusdis](https://cusdis.com/) e no [Lyket](https://app.lyket.dev/login) para usar as chaves de API.
-
-Mude a chave de api do Lyket nesse [arquivo](https://github.com/tuliocll/blog-svelte/blob/main/public/index.html#L38) para que os claps(likes) funcionem.
+Crie uma conta no [Cusdis](https://cusdis.com/) para usar a chave de API.
 
 Crie uma conta no Google Analytics e [pegue o codigo do GA para usar.](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=pt_br)
 
