@@ -3,7 +3,14 @@
 	import { analytics, db, remoteConfig } from '$lib/firebase';
 	import { getDocument } from '$lib/services/firestore';
 	import { logEvent } from 'firebase/analytics';
-	import { getBoolean } from 'firebase/remote-config';
+	import {
+		activate,
+		fetchAndActivate,
+		fetchConfig,
+		getBoolean,
+		getValue,
+		getAll
+	} from 'firebase/remote-config';
 	import { onMount } from 'svelte';
 	import Carousel from 'svelte-carousel';
 	import CarrouselItem from './CarrouselItem.svelte';
@@ -38,15 +45,19 @@
 	}
 
 	async function getBanners() {
-		const bannerConfig = await getBoolean(remoteConfig(), 'carrousel_banner');
-		featureToggleBanner = bannerConfig;
+		fetchAndActivate(remoteConfig()).then(async () => {
+			const bannerConfig = await getBoolean(remoteConfig(), 'carrousel_banner');
+			featureToggleBanner = bannerConfig;
+		});
 	}
 
 	onMount(() => {
 		if (browser) {
 			getPromoItens();
+
 			const isMobile = window.matchMedia('only screen and (max-width: 760px)').matches;
 			const isMobileSmall = window.matchMedia('only screen and (max-width: 320px)').matches;
+
 			if (isMobile) {
 				carrouselSize = 2;
 			}
@@ -54,13 +65,14 @@
 			if (isMobileSmall) {
 				carrouselSize = 1;
 			}
+
 			getBanners();
 		}
 	});
 </script>
 
 <section id="promo" class="">
-	{#if browser && products.length > 0 && featureToggleBanner}
+	{#if browser && featureToggleBanner && products.length > 0}
 		<Carousel particlesToShow={carrouselSize} on:pageChange={changePageEvent}>
 			{#each products as product}
 				<CarrouselItem
