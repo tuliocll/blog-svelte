@@ -21,6 +21,7 @@ Para acessar a versão com Svelte puro, mude para a branch `svelte`.
 - Reações nas postagens.
 - SEO otimizado
 - Preview ao compartilhar links
+- Botoes de compartilhamento nas postagens.
 
 ### Roadmap
 
@@ -28,7 +29,7 @@ Para acessar a versão com Svelte puro, mude para a branch `svelte`.
 - [ ] Listar tags na sidebar.
 - [ ] Adicionar shimmer na sidebar.
 - [ ] Configurar newsletter.
-- [ ] Adicionar botão de compartilhar.
+- [x] Adicionar botão de compartilhar.
 - [x] Implementar minutos de leitura nas postagens.
 - [x] Usar/refatorar writable stores para infos basicas do blog (nome, descricao, etc).
 - [x] Refatorar para typescript
@@ -60,6 +61,14 @@ cp .env.example .env
 Crie uma conta no [Cusdis](https://cusdis.com/) para usar a chave de API.
 
 Crie uma conta no Google Analytics e [pegue o codigo do GA para usar.](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=pt_br)
+
+Crie uma conta no Firebase e configure as Envs.
+
+Para rodar em modo de desenvolvimento:
+
+```
+yarn dev
+```
 
 ### Deploy
 

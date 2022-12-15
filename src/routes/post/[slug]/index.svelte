@@ -39,6 +39,7 @@
 	import { db } from '$lib/firebase';
 	import { getDocument, insertNewData } from '$lib/services/firestore';
 	import { getReaction } from '$lib/services/reactions';
+	import Share from '../../../components/share/Share.svelte';
 
 	export let article: PostType;
 	export let slug: string;
@@ -195,6 +196,13 @@
 		reactions = [...updateReactions];
 	}
 
+	function getUrl() {
+		if (browser) {
+			return window.location.href;
+		}
+		return '';
+	}
+
 	onMount(() => {
 		if (browser) {
 			document.querySelectorAll('pre code').forEach((el) => {
@@ -249,6 +257,14 @@
 				>
 			</div>
 		</header>
+
+		<Share
+			title={article.title}
+			desc={article.meta_description}
+			url={getUrl()}
+			image={thumb}
+			tags={[]}
+		/>
 
 		<div class="blog-post-body">
 			<figure class="blog-banner">
