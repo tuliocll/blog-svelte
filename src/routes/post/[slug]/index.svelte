@@ -66,7 +66,7 @@
 	}
 
 	function setImagesClick() {
-		if (document) {
+		if (browser) {
 			//@ts-ignore
 			const images = document.getElementById('content-body').querySelectorAll('img');
 
@@ -212,6 +212,7 @@
 			//@ts-ignore
 			initYouTubeVideos();
 			getServerReactions();
+			setImagesClick();
 		}
 	});
 
