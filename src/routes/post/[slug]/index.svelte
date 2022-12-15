@@ -277,7 +277,7 @@
 				</figcaption>
 			</figure>
 			<div id="content-body">
-				<Markdown content={article.html} />
+				{@html article.html}
 			</div>
 			<PostReactions {reactions} on:reacted={handleReaction} />
 		</div>
