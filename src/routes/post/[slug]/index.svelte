@@ -202,9 +202,15 @@
 		}
 		return '';
 	}
+	 let el
 
 	onMount(() => {
 		if (browser) {
+			//https://svelte.dev/tutorial/svelte-component
+			const child = document.createElement('span');
+		child.textContent = 'child';
+		el.appendChild(child);
+
 			document.querySelectorAll('pre code').forEach((el) => {
 				//@ts-ignore
 				hljs.highlightElement(el);
@@ -215,6 +221,9 @@
 			setImagesClick();
 		}
 	});
+
+
+	
 
 	let GOOGLE_ANALYTICS = import.meta.env ? import.meta.env.VITE_GOOGLE_ANALYTICS : '';
 </script>
@@ -276,7 +285,7 @@
 					<Markdown content={article.feature_image_caption} />
 				</figcaption>
 			</figure>
-			<div id="content-body">
+			<div id="content-body" bind:this={el}>
 				{@html article.html}
 			</div>
 			<PostReactions {reactions} on:reacted={handleReaction} />
