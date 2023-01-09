@@ -40,6 +40,7 @@
 	import { getDocument, insertNewData } from '$lib/services/firestore';
 	import { getReaction } from '$lib/services/reactions';
 	import Share from '../../../components/share/Share.svelte';
+	import CarrouselBanner from '../../../components/carrousel-banner/CarrouselBanner.svelte';
 
 	export let article: PostType;
 	export let slug: string;
@@ -202,14 +203,16 @@
 		}
 		return '';
 	}
-	 let el
+	let el;
 
 	onMount(() => {
 		if (browser) {
-			//https://svelte.dev/tutorial/svelte-component
-			const child = document.createElement('span');
-		child.textContent = 'child';
-		el.appendChild(child);
+			// Create Offer Carrousel
+			document.querySelectorAll('amazonprovider').forEach((el) => {
+				new CarrouselBanner({
+					target: el
+				});
+			});
 
 			document.querySelectorAll('pre code').forEach((el) => {
 				//@ts-ignore
@@ -221,9 +224,6 @@
 			setImagesClick();
 		}
 	});
-
-
-	
 
 	let GOOGLE_ANALYTICS = import.meta.env ? import.meta.env.VITE_GOOGLE_ANALYTICS : '';
 </script>
