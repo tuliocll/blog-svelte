@@ -40,6 +40,7 @@
 	import { getDocument, insertNewData } from '$lib/services/firestore';
 	import { getReaction } from '$lib/services/reactions';
 	import Share from '../../../components/share/Share.svelte';
+	import CarrouselBanner from '../../../components/carrousel-banner/CarrouselBanner.svelte';
 
 	export let article: PostType;
 	export let slug: string;
@@ -202,9 +203,17 @@
 		}
 		return '';
 	}
+	let el;
 
 	onMount(() => {
 		if (browser) {
+			// Create Offer Carrousel
+			document.querySelectorAll('amazonprovider').forEach((el) => {
+				new CarrouselBanner({
+					target: el
+				});
+			});
+
 			document.querySelectorAll('pre code').forEach((el) => {
 				//@ts-ignore
 				hljs.highlightElement(el);
@@ -276,7 +285,7 @@
 					<Markdown content={article.feature_image_caption} />
 				</figcaption>
 			</figure>
-			<div id="content-body">
+			<div id="content-body" bind:this={el}>
 				{@html article.html}
 			</div>
 			<PostReactions {reactions} on:reacted={handleReaction} />
