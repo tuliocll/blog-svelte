@@ -3,14 +3,7 @@
 	import { analytics, db, remoteConfig } from '$lib/firebase';
 	import { getDocument } from '$lib/services/firestore';
 	import { logEvent } from 'firebase/analytics';
-	import {
-		activate,
-		fetchAndActivate,
-		fetchConfig,
-		getBoolean,
-		getValue,
-		getAll
-	} from 'firebase/remote-config';
+	import { fetchAndActivate, getBoolean } from 'firebase/remote-config';
 	import { onMount } from 'svelte';
 	import Carousel from 'svelte-carousel';
 	import CarrouselItem from './CarrouselItem.svelte';
