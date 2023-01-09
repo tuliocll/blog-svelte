@@ -1,15 +1,23 @@
-# Blog em Svelte - [![Netlify Status](https://api.netlify.com/api/v1/badges/747c671e-99e1-446f-b264-840b6d97b7f6/deploy-status)](https://app.netlify.com/sites/tulio-blog/deploys)
+# Blog Frontend Sveltekit | [![Netlify Status](https://api.netlify.com/api/v1/badges/747c671e-99e1-446f-b264-840b6d97b7f6/deploy-status)](https://app.netlify.com/sites/tulio-blog/deploys)
+
+![](preview.gif)
+
+<div align="center">
+
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white)
+![Ghost](https://img.shields.io/badge/ghost-000?style=for-the-badge&logo=ghost&logoColor=%23F7DF1E)
+![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+
+</div>
 
 Frontend do blog https://tuliocalil.com.br desenvolvido em Svelte.
-Veja o [post do blog](https://www.tuliocalil.com.br/post/fiz-meu-blog-com-svelte) com a explicação completa do projeto.  
-Template HTML usado do site: https://themes.3rdwavemedia.com/.
+Veja o [post do blog](https://www.tuliocalil.com.br/post/fiz-meu-blog-com-svelte) com a explicação completa do projeto.
 
-Fiz o upgrade do Svelte para o [SvelteKit](https://kit.svelte.dev/)!
-Para acessar a versão com Svelte puro, mude para a branch `svelte`.
+## Features
 
-### Features
-
-- Sveltekit!
+- Sveltekit
 - Listagem de postagens com paginação (isso é uma feature ?).
 - Layout responsivo (isso é uma feature ?).
 - Comentarios e contador de comentarios nas postagens.
@@ -18,13 +26,18 @@ Para acessar a versão com Svelte puro, mude para a branch `svelte`.
 - Google Performance Monitor.
 - Image Lazy load e placeholder.
 - Pagina de erro customizada.
+- Code highlight.
+- Image zoom.
 - Reações nas postagens.
-- SEO otimizado
-- Preview ao compartilhar links
+- SEO otimizado.
+- Preview ao compartilhar links.
 - Botoes de compartilhamento nas postagens.
+- Carrousel de ofertas (Amazon)
 
-### Roadmap
+## Roadmap
 
+- [ ] Atualizar Sveltekit.
+- [ ] Criar pagina de sobre.
 - [ ] Implementar tags nos posts.
 - [ ] Listar tags na sidebar.
 - [ ] Adicionar shimmer na sidebar.
@@ -38,7 +51,7 @@ Para acessar a versão com Svelte puro, mude para a branch `svelte`.
 - [x] Criar feature toggle
 - [x] Adicionar Social meta tags
 
-### Como rodar
+## Como rodar
 
 Clone o projeto:
 
@@ -58,19 +71,21 @@ Configure o .env.
 cp .env.example .env
 ```
 
-Crie uma conta no [Cusdis](https://cusdis.com/) para usar a chave de API.
+> Serviços de terceiro:
 
-Crie uma conta no Google Analytics e [pegue o codigo do GA para usar.](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=pt_br)
+- Crie uma conta no [Cusdis](https://cusdis.com/) para usar os comentarios.
 
-Crie uma conta no Firebase e configure as Envs.
+- Crie uma conta no Google Analytics e [pegue o codigo do GA para usar.](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=pt_br)
 
-Para rodar em modo de desenvolvimento:
+- Crie uma conta no Firebase e configure as Envs.
+
+- Para rodar em modo de desenvolvimento:
 
 ```
 yarn dev
 ```
 
-### Deploy
+## Deploy
 
 ```bash
 yarn build
