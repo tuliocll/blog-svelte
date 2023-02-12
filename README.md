@@ -33,6 +33,7 @@ Veja o [post do blog](https://www.tuliocalil.com.br/post/fiz-meu-blog-com-svelte
 - Preview ao compartilhar links.
 - Botoes de compartilhamento nas postagens.
 - Carrousel de ofertas (Amazon).
+- Sitemap gerado automaticamente.
 
 ## Roadmap
 
