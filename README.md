@@ -32,7 +32,8 @@ Veja o [post do blog](https://www.tuliocalil.com.br/post/fiz-meu-blog-com-svelte
 - SEO otimizado.
 - Preview ao compartilhar links.
 - Botoes de compartilhamento nas postagens.
-- Carrousel de ofertas (Amazon)
+- Carrousel de ofertas (Amazon).
+- Sitemap automatico.
 
 ## Roadmap
 
