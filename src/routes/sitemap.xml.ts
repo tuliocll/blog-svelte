@@ -14,7 +14,7 @@ export async function get({ url }: { url: URL }) {
 	const sitemap = await generateSitemap(data, url.origin);
 
 	return {
-		header: {
+		headers: {
 			'content-type': 'application/xml'
 		},
 		body: sitemap
