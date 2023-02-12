@@ -4,7 +4,6 @@
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
-		"postbuild": "npx svelte-sitemap --domain https://tuliocalil.com.br",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
 		"prepare": "svelte-kit sync",
@@ -29,7 +28,6 @@
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.6",
 		"svelte-share-buttons-component": "^1.5.0",
-		"svelte-sitemap": "^2.6.0",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.2"
 	},
