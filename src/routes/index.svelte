@@ -68,7 +68,7 @@
 	}
 
 	const { author, siteUrl, siteDescription } = website;
-	let title = 'Home';
+	let title = 'React, React Native, Linux, Elixir e muito mais!';
 	const breadcrumbs = [
 		{
 			name: 'Home',

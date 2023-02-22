@@ -122,24 +122,24 @@
 
 	const featuredImageObject = {
 		url: article.feature_image,
-		alt: article.feature_image_alt,
+		alt: article.title,
 		width: 672,
 		height: 448,
-		caption: article.feature_image_caption
+		caption: article.title
 	};
 	const ogImageObject = {
-		url: article.og_image,
-		alt: article.og_description
+		url: article.feature_image,
+		alt: article.title
 	};
 
 	const ogSquareImageObject = {
-		url: article.og_image,
-		alt: article.og_description
+		url: article.feature_image,
+		alt: article.title
 	};
 
 	const twitterImageObject = {
-		url: article.twitter_image,
-		alt: article.twitter_description
+		url: article.feature_image,
+		alt: article.title
 	};
 
 	const breadcrumbs = [
@@ -235,7 +235,7 @@
 	title={article?.title}
 	datePublished={article?.published_at}
 	lastUpdated={article?.updated_at}
-	metadescription={article?.meta_description || article?.html.slice(0, 150)}
+	metadescription={article?.excerpt || article?.html.slice(0, 150)}
 	timeToRead={readTime.minutes}
 	featuredImage={featuredImageObject}
 	ogImage={ogImageObject}

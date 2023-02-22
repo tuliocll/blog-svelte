@@ -4,12 +4,13 @@ const facebookAuthorPageName = import.meta.env ? import.meta.env.VITE_FACEBOOK_A
 const website = {
 	author: 'Tulio Calil',
 	ogLanguage: 'pt_BR',
-	entity: "",
+	entity: '',
 	siteLanguage: 'pt-BR',
 	siteTitle: 'Tulio Calil',
 	siteShortTitle: 'Tulio Calil Blog',
-	siteDescription: 'Um blog com tutoriais sobre JavaScript, React, Nodejs, Elixir e tudo mais.',
-	siteUrl: import.meta.env ? /** @type {string} */ (import.meta.env.VITE_SITE_URL) : '',
+	siteDescription:
+		'Postagens sobre Nodejs, React, Docker, React Native, Electron, Arquitetura, boas práticas e muito mais!',
+	siteUrl: import.meta.env ? /** @type {string} */ import.meta.env.VITE_SITE_URL : '',
 	icon: 'static/icon.png',
 	backgroundColor: '#1b4079',
 	themeColor: '#d62828',
