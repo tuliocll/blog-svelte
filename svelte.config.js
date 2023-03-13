@@ -16,6 +16,11 @@ const config = {
 			optimizeDeps: {
 				include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep']
 			}
+		},
+		prerender: {
+			crawl: true,
+			enabled: true,
+			entries: ['*']
 		}
 	}
 };

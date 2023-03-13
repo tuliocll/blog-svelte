@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
+	export const prerender = true;
+
 	import ghost from '$lib/ghost';
 	import { slugify } from '@tryghost/string';
-
-	export const prerender = true;
 
 	export async function load({ params }: { params: any }) {
 		try {
