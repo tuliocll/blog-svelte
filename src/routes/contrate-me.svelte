@@ -1,11 +1,12 @@
 <script context="module" lang="ts">
+	export const prerender = true;
+
 	import ghost from '$lib/ghost';
 	import { slugify } from '@tryghost/string';
 
-	export async function load({ params }: { params: any }) {
+	export async function load() {
 		try {
-			const { slug } = params;
-			const data = await ghost.pages.read({ slug: slugify(slug) });
+			const data = await ghost.pages.read({ slug: 'contrate-me' });
 
 			return {
 				props: {
@@ -13,6 +14,7 @@
 				}
 			};
 		} catch (err) {
+			console.log(err);
 			return {
 				status: 302,
 				redirect: '/'
@@ -91,5 +93,56 @@
 		<h1 class="section-title font-weight-bold mb-3">{page?.title || ''}</h1>
 		<br />
 		{@html page.html}
+
+		<form name="contact-me" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+			<input type="hidden" name="form-name" value="contact-me" />
+			<input type="text" name="bot-field" />
+			<div class="row g-3">
+				<div class="col-12 col-md-6">
+					<label class="sr-only" for="cname">Name</label>
+					<input
+						type="text"
+						class="form-control"
+						id="cname"
+						name="name"
+						placeholder="Nome"
+						minlength="2"
+						required={true}
+						aria-required="true"
+					/>
+				</div>
+				<div class="col-12 col-md-6">
+					<label class="sr-only" for="cemail">Email</label>
+					<input
+						type="email"
+						class="form-control"
+						id="cemail"
+						name="email"
+						placeholder="Email"
+						required={true}
+						aria-required="true"
+					/>
+				</div>
+
+				<div class="col-12 mt-2">
+					<label class="sr-only" for="cmessage">Your message</label>
+					<textarea
+						class="form-control"
+						id="cmessage"
+						name="message"
+						placeholder="Digite sua mensagem"
+						rows="10"
+						required={true}
+						aria-required="true"
+						spellcheck="false"
+						data-ms-editor="true"
+					/>
+				</div>
+				<div class="form-group col-3 mt-2">
+					<button type="submit" class="btn btn-block btn-primary py-2">Enviar</button>
+				</div>
+			</div>
+			<!--//form-row-->
+		</form>
 	</div>
 </section>
