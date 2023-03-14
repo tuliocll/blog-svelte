@@ -224,6 +224,14 @@ photo {
 	min-height: 150px;
 }
 
+.hidden {
+	opacity: 0 !important;
+}
+
+.swal2-styled.swal2-confirm {
+	background-color: #eea73b !important;
+}
+
 @media (max-width: 1415px) {
 	.container {
 		margin-left: auto;

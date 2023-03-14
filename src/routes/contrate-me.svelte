@@ -2,7 +2,6 @@
 	export const prerender = true;
 
 	import ghost from '$lib/ghost';
-	import { slugify } from '@tryghost/string';
 
 	export async function load() {
 		try {
@@ -29,6 +28,8 @@
 	import featuredImageSrc from '$lib/assets/home/logo.jpg';
 	import website from '$lib/config/website';
 	import SEO from '../components/SEO/SEO.svelte';
+	import Swal from 'sweetalert2';
+	import { browser } from '$app/env';
 
 	export let page: any;
 
@@ -83,6 +84,17 @@
 	};
 
 	let GOOGLE_ANALYTICS = import.meta.env ? import.meta.env.VITE_GOOGLE_ANALYTICS : '';
+
+	const send = browser ? new URLSearchParams(location.search).get('send') : undefined;
+
+	if (send === 'true') {
+		Swal.fire({
+			title: 'Sucesso!',
+			text: 'Sua mensagem foi recebida e será respondida assim que possível.',
+			icon: 'success',
+			confirmButtonText: 'Ok'
+		});
+	}
 </script>
 
 <SEO {...seoProps} />
@@ -92,13 +104,23 @@
 	<div class="container">
 		<h1 class="section-title font-weight-bold mb-3">{page?.title || ''}</h1>
 		<br />
+
 		{@html page.html}
 
-		<form name="contact-me" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+		<form
+			name="contact-me"
+			method="POST"
+			netlify-honeypot="bot-field"
+			data-netlify="true"
+			action="/contrate-me?send=true"
+		>
 			<input type="hidden" name="form-name" value="contact-me" />
-			<input type="text" name="bot-field" />
+			<div class="hidden">
+				<label>Your: </label>
+				<input type="text" name="bot-field" />
+			</div>
 			<div class="row g-3">
-				<div class="col-12 col-md-6">
+				<div class="col-12 col-md-6 mt-2">
 					<label class="sr-only" for="cname">Name</label>
 					<input
 						type="text"
@@ -111,7 +133,7 @@
 						aria-required="true"
 					/>
 				</div>
-				<div class="col-12 col-md-6">
+				<div class="col-12 col-md-6 mt-2">
 					<label class="sr-only" for="cemail">Email</label>
 					<input
 						type="email"
@@ -138,7 +160,7 @@
 						data-ms-editor="true"
 					/>
 				</div>
-				<div class="form-group col-3 mt-2">
+				<div class="form-group mt-2 col-6 col-lg-2">
 					<button type="submit" class="btn btn-block btn-primary py-2">Enviar</button>
 				</div>
 			</div>
