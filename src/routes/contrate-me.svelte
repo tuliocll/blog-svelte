@@ -34,10 +34,10 @@
 	export let page: any;
 
 	const { author, siteUrl, siteDescription } = website;
-	let title = 'Home';
+	let title = 'Contrate-me';
 	const breadcrumbs = [
 		{
-			name: 'Home',
+			name: 'Contrate-me',
 			slug: ''
 		}
 	];
@@ -48,7 +48,7 @@
 		alt: featuredImageAlt,
 		width: 672,
 		height: 448,
-		caption: 'Home page'
+		caption: 'Contrate-me page'
 	};
 	const ogImage = {
 		url: featuredImageSrc,
