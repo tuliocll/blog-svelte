@@ -16,7 +16,7 @@
 </script>
 
 <script lang="ts">
-	import { navigating } from '$app/stores';
+	import { navigating, page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import CusdisService from '$lib/cusdis';
 	import { onMount } from 'svelte';
@@ -59,12 +59,20 @@
 
 	function handleNextPage() {
 		currentPage += 1;
-		goto(`/?page=${currentPage}`);
+
+		let query = new URLSearchParams($page.url.search.toString());
+		query.set('page', currentPage.toString());
+
+		goto(`?${query.toString()}`);
 	}
 
 	function handlePreviusPage() {
 		currentPage -= 1;
-		goto(`/?page=${currentPage}`);
+
+		let query = new URLSearchParams($page.url.search.toString());
+		query.set('page', currentPage.toString());
+
+		goto(`?${query.toString()}`);
 	}
 
 	const { author, siteUrl, siteDescription } = website;

@@ -5,6 +5,31 @@ body {
 	height: 100%;
 }
 
+header {
+	overflow-y: auto;
+}
+
+.header::-webkit-scrollbar {
+	width: 6px;
+	background-color: #eea73b;
+}
+
+.header::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 0.5rem;
+}
+
+.category-itens {
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.category-title {
+	color: #fff;
+	align-self: flex-start;
+	margin-left: 10px;
+}
+
 .container {
 	margin-left: 2vw;
 }

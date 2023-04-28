@@ -20,6 +20,7 @@ export const initial_state = {
 		{ label: 'Linkedin', url: '/' },
 		{ label: 'Github', url: '/' }
 	],
+	tags: [{ name: 'React', url: '/', slug: 'react' }],
 	secondary_navigation: [{ label: 'Sign up', url: '#/portal/' }],
 	meta_title: null,
 	meta_description:

@@ -1,24 +1,22 @@
 <script context="module" lang="ts">
 	type fetchAPI = typeof fetch;
 	export async function load({ fetch }: { params: any; fetch: fetchAPI }) {
-		const [about] = await Promise.all([fetch(`/about.json`).then((r: any) => r.json())]);
-
+		const response = await fetch(`/about.json`).then((r: any) => r.json());
+		const { tags, about, author } = response;
 		return {
-			props: { about: about }
+			props: { about: { ...about, tags, author } }
 		};
 	}
 </script>
 
 <script lang="ts">
-	import type { ReactionType } from '$lib/types/reactions.types';
 	import Sidebar from '../components/sidebar/Sidebar.svelte';
 	import Footer from '../components/footer/Footer.svelte';
 	import { analytics, perf } from '$lib/firebase';
-
-	export let about;
-
 	import { blogInfoStore } from '../stores/blogInfo.js';
 	import { browser } from '$app/env';
+
+	export let about;
 
 	if (browser) {
 		analytics();
