@@ -19,7 +19,7 @@ const config = {
 		},
 		prerender: {
 			crawl: true,
-			enabled: false,
+			enabled: true,
 			entries: ['*']
 		}
 	}
