@@ -1,4 +1,4 @@
-# Blog Frontend Sveltekit | [![Netlify Status](https://api.netlify.com/api/v1/badges/747c671e-99e1-446f-b264-840b6d97b7f6/deploy-status)](https://app.netlify.com/sites/tulio-blog/deploys)
+# Blog Frontend Sveltekit | [![Netlify Status](https://api.netlify.com/api/v1/badges/011cef53-0979-4be3-98f9-9a273958bf5a/deploy-status)](https://app.netlify.com/sites/tuliocalil/deploys)
 
 <div align="center">
 
