@@ -34,13 +34,14 @@ Veja o [post do blog](https://www.tuliocalil.com.br/post/fiz-meu-blog-com-svelte
 - Botoes de compartilhamento nas postagens.
 - Carrousel de ofertas (Amazon).
 - Sitemap gerado automaticamente.
+- Filtro por categorias
 
 ## Roadmap
 
 - [ ] Atualizar Sveltekit.
-- [ ] Criar pagina de sobre.
+- [x] Criar pagina de sobre.
 - [ ] Implementar tags nos posts.
-- [ ] Listar tags na sidebar.
+- [x] Listar tags na sidebar.
 - [ ] Adicionar shimmer na sidebar.
 - [ ] Configurar newsletter.
 - [x] Adicionar botão de compartilhar.
@@ -51,6 +52,8 @@ Veja o [post do blog](https://www.tuliocalil.com.br/post/fiz-meu-blog-com-svelte
 - [x] Melhorar SEO
 - [x] Criar feature toggle
 - [x] Adicionar Social meta tags
+- [ ] Adicionar barra de busca
+- [ ] Criar widget para Github e Spotify
 
 ## Como rodar
 

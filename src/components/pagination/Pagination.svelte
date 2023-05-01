@@ -5,11 +5,11 @@
 	const nextPage = () => dispatch('next-page');
 	const previusPage = () => dispatch('previus-page');
 
-	export let page = 1;
-	export let totalPages = 1;
+	export let hasNext = false;
+	export let hasPrevius = false;
 
-	$: hasMorePosts = page === totalPages ? 'd-none' : '';
-	$: hasPreviusPosts = page <= 1 ? 'd-none' : '';
+	$: hasMorePosts = hasNext ? '' : 'd-none';
+	$: hasPreviusPosts = hasPrevius ? '' : 'd-none';
 </script>
 
 <nav class="blog-nav nav nav-justified my-5">

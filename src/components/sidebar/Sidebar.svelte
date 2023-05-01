@@ -76,7 +76,7 @@
 					{/each}
 				</ul>
 
-				<a class="btn btn-primary" href="/contrate-me">
+				<a class="btn btn-secondary" href="/contrate-me">
 					<i class="fas fa-paper-plane me-2 mr-2" />Contrate-me</a
 				>
 
@@ -84,10 +84,10 @@
 			</div>
 
 			<h4 class="category-title">Categorias:</h4>
-			<ul class="navbar-nav flex-row text-start category-itens">
+			<ul class="navbar-nav flex-row text-start category-itens tag-list">
 				{#each blogInfo.tags as tag}
-					<li class="nav-item">
-						<a class="nav-link mr-3 mr-md-0" href={`/?category=${tag.slug}`}>{tag.name}</a>
+					<li class="tag">
+						<a class="" data-sveltekit-replacestate href={`/?category=${tag.slug}`}>#{tag.name}</a>
 					</li>
 				{/each}
 			</ul>

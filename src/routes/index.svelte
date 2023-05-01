@@ -30,12 +30,13 @@
 	import Pagination from '../components/pagination/Pagination.svelte';
 	import PostShimmer from '../components/post-shimmer/PostShimmer.svelte';
 	import CarrouselBanner from '../components/carrousel-banner/CarrouselBanner.svelte';
+	import { browser } from '$app/env';
 
-	export let articles: PostType[];
-	export let pagination;
+	export let articles: PostType[] = [];
+	export let pagination: PaginationType;
 
-	let currentPage = 1;
-	let totalPages = pagination?.pages;
+	let loading = articles.length === 0;
+	$: currentPage = getPageFromURL();
 
 	let destination = '';
 
@@ -43,36 +44,36 @@
 		destination = value?.to.pathname.split('/')[1] || '';
 	});
 
-	if (getPageFromURL()) {
-		currentPage = Number(getPageFromURL());
+	$: if (articles.length === 0 && browser) {
+		goto('/');
 	}
 
 	function getPageFromURL() {
 		try {
 			const queryPage = new URL(window.location.href).searchParams;
 
-			return queryPage.get('page') || false;
+			return Number(queryPage.get('page')) || 1;
 		} catch (e) {
-			return false;
+			return 1;
 		}
 	}
 
-	function handleNextPage() {
-		currentPage += 1;
+	async function handleNextPage() {
+		const currentPage = getPageFromURL() + 1;
 
 		let query = new URLSearchParams($page.url.search.toString());
 		query.set('page', currentPage.toString());
 
-		goto(`?${query.toString()}`);
+		await goto(`?${query.toString()}`);
 	}
 
-	function handlePreviusPage() {
-		currentPage -= 1;
+	async function handlePreviusPage() {
+		const currentPage = getPageFromURL() - 1;
 
 		let query = new URLSearchParams($page.url.search.toString());
 		query.set('page', currentPage.toString());
 
-		goto(`?${query.toString()}`);
+		await goto(`?${query.toString()}`);
 	}
 
 	const { author, siteUrl, siteDescription } = website;
@@ -90,7 +91,7 @@
 		alt: featuredImageAlt,
 		width: 672,
 		height: 448,
-		caption: 'Home page'
+		caption: 'Home'
 	};
 	const ogImage = {
 		url: featuredImageSrc,
@@ -137,7 +138,7 @@
 
 <section class="blog-list px-3 py-5 p-md-5">
 	<div class="container">
-		{#if $navigating && destination !== 'post'}
+		{#if ($navigating && destination !== 'post') || loading}
 			<PostShimmer />
 			<PostShimmer />
 			<PostShimmer />
@@ -156,8 +157,8 @@
 	</div>
 
 	<Pagination
-		page={currentPage}
-		{totalPages}
+		hasNext={pagination.next > 0}
+		hasPrevius={pagination.page > 1}
 		on:next-page={handleNextPage}
 		on:previus-page={handlePreviusPage}
 	/>
