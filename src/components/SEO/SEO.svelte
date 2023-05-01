@@ -27,7 +27,7 @@
 
 	export let article = false;
 	export let breadcrumbs: any[] = [];
-	export let entityMeta = '';
+	export let entityMeta = {};
 	export let lastUpdated;
 	export let datePublished;
 	export let metadescription: string;
