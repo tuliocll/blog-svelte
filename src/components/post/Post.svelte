@@ -1,62 +1,60 @@
-<script>
-  import { formatDistance } from "date-fns";
-  import { readingTime } from "reading-time-estimator";
-  import { Link } from "svelte-navigator";
-  import pt_br from "date-fns/locale/pt-BR";
-  import { marked } from "marked";
-  import DOMPurify from "dompurify";
-  import { LazyImage } from "svelte-lazy-image";
+<script lang="ts">
+	import { formatDistance } from 'date-fns';
+	import { readingTime } from 'reading-time-estimator';
 
-  export let title;
-  export let slug;
-  export let publishedAt;
+	//@ts-ignore
+	import { ptBR } from 'date-fns/locale/index.js';
+	import { LazyImage } from 'svelte-lazy-image';
 
-  export let content = "";
-  export let cover;
+	export let title: string;
+	export let slug: string;
+	export let published_at: string;
 
-  $: readTime = readingTime(content, 100);
+	export let html = '';
+	export let feature_image: string;
 
-  $: thumb = cover.data.attributes.formats.thumbnail.url;
-  const api_url = API_URL;
-  $: thumbnailUrl = `${api_url}${thumb}`;
+	let readTime = readingTime(html, 100);
 
-  $: formatedDate = formatDistance(new Date(publishedAt), new Date(), {
-    addSuffix: true,
-    locale: pt_br,
-  });
+	$: formatedDate = formatDistance(new Date(published_at), new Date(), {
+		addSuffix: true,
+		locale: ptBR
+	});
 
-  $: html = marked.parse(content);
-  $: contentParsed = DOMPurify.sanitize(html, {
-    USE_PROFILES: { html: false },
-  }).replace("&nbsp;", " ");
+	$: contentParsed = removeHTMLTags(html).replace('&quot;', ' ');
+
+	function removeHTMLTags(str: string) {
+		if (str === null || str === '') return '';
+
+		return str.replace(/(<([^>]+)>)/gi, '');
+	}
 </script>
 
 <div class="item mb-5">
-  <div class="media">
-    <LazyImage
-      class="mr-3 post-thumb d-none d-md-flex"
-      src={thumbnailUrl}
-      placeholder="https://via.placeholder.com/250?text=TulioCalil"
-      alt="image {title}"
-    />
+	<div class="media">
+		<LazyImage
+			class="mr-3 post-thumb d-none d-md-flex"
+			src={feature_image}
+			placeholder="https://via.placeholder.com/250?text=TulioCalil"
+			alt="image {title}"
+		/>
 
-    <div class="media-body">
-      <h3 class="title mb-1">
-        <Link to="/post/{slug}">{title}</Link>
-      </h3>
-      <div class="meta mb-1">
-        <span class="date">Publicado {formatedDate}</span><span class="time"
-          >{readTime.minutes} min de leitura</span
-        ><span class="comment"
-          ><Link to="/post/{slug}#comments">
-            <span data-cusdis-count-page-id={slug}>0</span> comentarios</Link
-          ></span
-        >
-      </div>
-      <div class="intro">
-        {contentParsed.slice(0, 200)}...
-      </div>
-      <a class="more-link" href="/post/{slug}">Continue lendo &rarr;</a>
-    </div>
-  </div>
+		<div class="media-body">
+			<h3 class="title mb-1">
+				<a href="/post/{slug}">{title}</a>
+			</h3>
+			<div class="meta mb-1">
+				<span class="date">Publicado {formatedDate}</span><span class="time"
+					>{readTime.minutes} min de leitura</span
+				><span class="comment"
+					><a href="/post/{slug}#comments">
+						<span data-cusdis-count-page-id={slug}>0</span> comentarios</a
+					></span
+				>
+			</div>
+			<div class="intro">
+				{contentParsed.slice(0, 200)}...
+			</div>
+			<a class="more-link" href="/post/{slug}">Continue lendo &rarr;</a>
+		</div>
+	</div>
 </div>

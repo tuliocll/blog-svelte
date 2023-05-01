@@ -1,36 +1,61 @@
-# Blog em Svelte
+# Blog Frontend Sveltekit | [![Netlify Status](https://api.netlify.com/api/v1/badges/011cef53-0979-4be3-98f9-9a273958bf5a/deploy-status)](https://app.netlify.com/sites/tuliocalil/deploys)
+
+<div align="center">
+
+![](preview.gif)
+
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white)
+![Ghost](https://img.shields.io/badge/ghost-000?style=for-the-badge&logo=ghost&logoColor=%23F7DF1E)
+![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+
+</div>
 
 Frontend do blog https://tuliocalil.com.br desenvolvido em Svelte.
-Veja o [post do blog](https://www.tuliocalil.com.br/post/fiz-meu-blog-com-svelte) com a explicação completa do projeto.  
-Template HTML usado do site: https://themes.3rdwavemedia.com/.
+Veja o [post do blog](https://www.tuliocalil.com.br/post/fiz-meu-blog-com-svelte) com a explicação completa do projeto.
 
-### Features
+## Features
 
+- Sveltekit
 - Listagem de postagens com paginação (isso é uma feature ?).
 - Layout responsivo (isso é uma feature ?).
-- Botão de clap(like).
 - Comentarios e contador de comentarios nas postagens.
 - Tempo de leitura do post.
 - Google Analytics.
+- Google Performance Monitor.
 - Image Lazy load e placeholder.
-- Svelte Query para fetch e cache das request.
+- Pagina de erro customizada.
+- Code highlight.
+- Image zoom.
+- Reações nas postagens.
+- SEO otimizado.
+- Preview ao compartilhar links.
+- Botoes de compartilhamento nas postagens.
+- Carrousel de ofertas (Amazon).
+- Sitemap gerado automaticamente.
+- Filtro por categorias
 
-### Roadmap
+## Roadmap
 
+- [ ] Atualizar Sveltekit.
+- [x] Criar pagina de sobre.
 - [ ] Implementar tags nos posts.
-- [ ] Listar tags na sidebar.
+- [x] Listar tags na sidebar.
 - [ ] Adicionar shimmer na sidebar.
 - [ ] Configurar newsletter.
-- [ ] Adicionar botão de compartilhar.
+- [x] Adicionar botão de compartilhar.
 - [x] Implementar minutos de leitura nas postagens.
 - [x] Usar/refatorar writable stores para infos basicas do blog (nome, descricao, etc).
-- [ ] Refatorar para typescript
-- [ ] Melhorar acessibilidade
+- [x] Refatorar para typescript
+- [x] Melhorar acessibilidade
 - [x] Melhorar SEO
 - [x] Criar feature toggle
-- [ ] Adicionar Social meta tags
+- [x] Adicionar Social meta tags
+- [ ] Adicionar barra de busca
+- [ ] Criar widget para Github e Spotify
 
-### Como rodar
+## Como rodar
 
 Clone o projeto:
 
@@ -50,13 +75,21 @@ Configure o .env.
 cp .env.example .env
 ```
 
-Crie uma conta no [Cusdis](https://cusdis.com/) e no [Lyket](https://app.lyket.dev/login) para usar as chaves de API.
+> Serviços de terceiro:
 
-Mude a chave de api do Lyket nesse [arquivo](https://github.com/tuliocll/blog-svelte/blob/main/public/index.html#L38) para que os claps(likes) funcionem.
+- Crie uma conta no [Cusdis](https://cusdis.com/) para usar os comentarios.
 
-Crie uma conta no Google Analytics e [pegue o codigo do GA para usar.](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=pt_br)
+- Crie uma conta no Google Analytics e [pegue o codigo do GA para usar.](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=pt_br)
 
-### Deploy
+- Crie uma conta no Firebase e configure as Envs.
+
+- Para rodar em modo de desenvolvimento:
+
+```
+yarn dev
+```
+
+## Deploy
 
 ```bash
 yarn build

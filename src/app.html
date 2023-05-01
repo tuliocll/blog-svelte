@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link id="theme-style" rel="stylesheet" href="/assets/css/theme-5.css" />
+		<link rel="stylesheet" href="/assets/css/global.css" />
+		<link
+			rel="stylesheet"
+			href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/dark.min.css"
+		/>
+		<script
+			defer
+			src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"
+		></script>
+		<script
+			defer
+			src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/clojure.min.js"
+		></script>
+		<script
+			defer
+			src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/elixir.min.js"
+		></script>
+
+		<!-- FontAwesome JS-->
+		<script
+			defer
+			src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
+			integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
+			crossorigin="anonymous"
+		></script>
+		<script
+			async
+			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5560459956754530"
+			crossorigin="anonymous"
+		></script>
+		%sveltekit.head%
+	</head>
+	<body>
+		<div>%sveltekit.body%</div>
+
+		<!-- Javascript -->
+		<script src="/assets/plugins/jquery-3.3.1.min.js"></script>
+		<script src="/assets/plugins/popper.min.js"></script>
+		<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script>
+			/*
+			 * Light YouTube Embeds by @labnol
+			 * Credit: https://www.labnol.org/
+			 */
+
+			function labnolIframe(div) {
+				var iframe = document.createElement('iframe');
+				iframe.setAttribute(
+					'src',
+					'https://www.youtube.com/embed/' + div.dataset.id + '?autoplay=1&rel=0'
+				);
+				iframe.setAttribute('frameborder', '0');
+				iframe.setAttribute('allowfullscreen', '1');
+				iframe.setAttribute(
+					'allow',
+					'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+				);
+				div.parentNode.replaceChild(iframe, div);
+			}
+
+			function initYouTubeVideos() {
+				var playerElements = document.getElementsByClassName('youtube-player');
+				for (var n = 0; n < playerElements.length; n++) {
+					var videoId = playerElements[n].dataset.id;
+					var div = document.createElement('div');
+					div.setAttribute('data-id', videoId);
+					var thumbNode = document.createElement('img');
+					thumbNode.src = '//i.ytimg.com/vi/ID/hqdefault.jpg'.replace('ID', videoId);
+					div.appendChild(thumbNode);
+					var playButton = document.createElement('div');
+					playButton.setAttribute('class', 'play');
+					div.appendChild(playButton);
+					div.onclick = function () {
+						labnolIframe(this);
+					};
+					playerElements[n].appendChild(div);
+				}
+			}
+
+			document.addEventListener('DOMContentLoaded', initYouTubeVideos);
+		</script>
+	</body>
+</html>
