@@ -149,7 +149,7 @@
 			{#each articles as post, index}
 				<Post {...post} />
 
-				{#if index === articles.length / 2 - 1}
+				{#if index === Math.ceil(articles.length / 2) - 1}
 					<CarrouselBanner />
 				{/if}
 			{/each}
