@@ -15,6 +15,7 @@
 	import { analytics, perf } from '$lib/firebase';
 	import { blogInfoStore } from '../stores/blogInfo.js';
 	import { browser } from '$app/env';
+	import StaticBanner from '../components/static-banner/StaticBanner.svelte';
 
 	export let about;
 
@@ -31,6 +32,7 @@
 </nav>
 
 <div class="main-wrapper">
+	<StaticBanner />
 	<slot />
 </div>
 

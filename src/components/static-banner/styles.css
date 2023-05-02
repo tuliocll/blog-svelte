@@ -1,0 +1,15 @@
+.banner-container {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	justify-content: center;
+	align-items: center;
+	max-width: 1000px;
+}
+
+.banner-image {
+	width: auto;
+	height: 10vw;
+	object-fit: contain;
+	background-color: #fff;
+}
