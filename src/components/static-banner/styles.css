@@ -13,3 +13,15 @@
 	object-fit: contain;
 	background-color: #fff;
 }
+
+@media (max-width: 768px) {
+	.banner-image {
+		height: 20vw;
+	}
+}
+
+@media (max-width: 320px) {
+	.banner-image {
+		height: 25vw;
+	}
+}

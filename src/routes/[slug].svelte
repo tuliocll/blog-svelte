@@ -86,7 +86,7 @@
 <SEO {...seoProps} />
 <GoogleAnalytics properties={[GOOGLE_ANALYTICS]} />
 
-<section class="blog-list px-3 py-5 p-md-5">
+<section class="blog-list px-3 py-2 p-md-5">
 	<div class="container">
 		<h1 class="section-title font-weight-bold mb-3">{page?.title || ''}</h1>
 		<br />

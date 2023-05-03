@@ -136,7 +136,7 @@
 <SEO {...seoProps} />
 <GoogleAnalytics properties={[GOOGLE_ANALYTICS]} />
 
-<section class="blog-list px-3 py-5 p-md-5">
+<section class="blog-list px-3 py-3 p-md-5">
 	<div class="container">
 		{#if ($navigating && destination !== 'post') || loading}
 			<PostShimmer />
